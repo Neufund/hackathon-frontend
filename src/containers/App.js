@@ -6,7 +6,7 @@ import { loadIcoParams } from '../actions/loadIcoParams';
 import { loadIcoStats } from '../actions/loadIcoStats';
 import config from '../config';
 import BeforeIco from '../components/BeforeIco';
-import DuringIco from '../components/DuringIco';
+import DuringIco from './DuringIco';
 import AfterIco from '../components/AfterIco';
 
 const ICO_PHASE = {
