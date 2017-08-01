@@ -11,6 +11,7 @@ import AfterIco from '../components/AfterIco';
 import { ICO_PHASES } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
 import Jumbotron from '../components/Jumbotron';
+import TopHeader from '../components/TopHeader';
 
 export class AppComponent extends React.Component {
   componentDidMount() {
@@ -40,9 +41,12 @@ export class AppComponent extends React.Component {
     }
 
     return (
-      <Jumbotron>
-        {this.renderBody()}
-      </Jumbotron>
+      <div>
+        <TopHeader />
+        <Jumbotron>
+          {this.renderBody()}
+        </Jumbotron>
+      </div>
     );
   }
 }
