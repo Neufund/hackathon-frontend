@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import invariant from 'invariant';
 import { connect } from 'react-redux';
-import { loadIcoParams } from '../actions/loadIcoParams';
 
+import { loadIcoParams } from '../actions/loadIcoParams';
 import BeforeIco from '../containers/BeforeIco';
-import DuringIco from '../components/DuringIco';
+import DuringIco from './DuringIco';
 import AfterIco from '../components/AfterIco';
 import { ICO_PHASES } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';

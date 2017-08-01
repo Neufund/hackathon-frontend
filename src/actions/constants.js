@@ -9,3 +9,5 @@ export const ICO_PHASES = {
   UNKNOWN: 'UNKNOWN',
 };
 
+export const LOAD_ICO_STATS = 'LOAD_ICO_STATS';
+
