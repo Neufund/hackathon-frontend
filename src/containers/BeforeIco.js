@@ -7,9 +7,9 @@ import { Countdown } from '../components/Countdown';
 
 export const BeforeIcoComponent = ({ startDate }) => (
   <div>
-    <h1 className="center">Commit funds to invest in the future</h1>
+    <h1 className="center before-ico-header">Commit funds to invest in the future</h1>
 
-    <p className="center">
+    <p className="element-center center before-ico-para">
       Commit ETH to get first hand oppurtunity to invest in startups
     </p>
 

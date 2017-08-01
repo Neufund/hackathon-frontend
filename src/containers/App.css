@@ -16,6 +16,15 @@ h1 {
   color: #b8cbd4;
 }
 
+.element-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.before-ico-para {
+  padding-bottom: 10px;
+}
+
 .top-header {
   height: 45px;
 }
