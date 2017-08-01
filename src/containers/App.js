@@ -9,6 +9,20 @@ import DuringIco from './DuringIco';
 import AfterIco from '../components/AfterIco';
 import { ICO_PHASES } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
+import MyStats from '../components/MyStats';
+
+function chooseCounter(icoPhase) {
+  switch (icoPhase) {
+    case ICO_PHASES.BEFORE_ICO:
+      return <BeforeIco />;
+    case ICO_PHASES.DURING_ICO:
+      return <DuringIco />;
+    case ICO_PHASES.AFTER_ICO:
+      return <AfterIco />;
+    default:
+      return invariant(false, 'Unsupported ICO Phase');
+  }
+}
 
 export class AppComponent extends React.Component {
   componentDidMount() {
@@ -17,21 +31,15 @@ export class AppComponent extends React.Component {
 
   render() {
     const { icoPhase, isLoading } = this.props;
-
     if (isLoading) {
       return <div>Loading...</div>;
     }
-
-    switch (icoPhase) {
-      case ICO_PHASES.BEFORE_ICO:
-        return <BeforeIco />;
-      case ICO_PHASES.DURING_ICO:
-        return <DuringIco />;
-      case ICO_PHASES.AFTER_ICO:
-        return <AfterIco />;
-      default:
-        return invariant(false, 'Unsupported ICO Phase');
-    }
+    return (
+      <div>
+        {chooseCounter(icoPhase)}
+        <MyStats />
+      </div>
+    );
   }
 }
 
