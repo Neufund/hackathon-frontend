@@ -76,6 +76,7 @@
     "notes": "notes -s src/**",
     "sass-lint": "sass-lint -v -q",
     "eslint": "eslint --ignore-path .gitignore .",
+    "eslint-fix": "eslint --ignore-path .gitignore --fix .",
     "lint": "yarn eslint ; yarn sass-lint",
     "testrpcs": "testrpc --deterministic",
     "build": "babel-node node_modules/.bin/webpack",

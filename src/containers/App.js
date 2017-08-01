@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 import invariant from 'invariant';
 import { connect } from 'react-redux';
 import { loadIcoParams } from '../actions/loadIcoParams';
-
 import BeforeIco from '../components/BeforeIco';
-import DuringIco from '../components/DuringIco';
+import DuringIco from './DuringIco';
 import AfterIco from '../components/AfterIco';
 
 const ICO_PHASE = {

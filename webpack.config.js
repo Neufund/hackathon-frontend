@@ -2,6 +2,8 @@ import path from 'path';
 import webpack from 'webpack';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default {
   devServer: {
     host: 'localhost',
@@ -40,25 +42,11 @@ export default {
     rules: [
       {
         test: /\.s?css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'css-loader' }],
-        include: /flexboxgrid/,
-      },
-      {
-        test: /\.s?css$/,
         use: [
           { loader: 'style-loader' },
-          {
-            loader: 'css-loader',
-            options: {
-              modules: true,
-              importLoaders: 1,
-              localIdentName: '[name]__[local]___[hash:base64:5]',
-              camelCase: 'dashesOnly',
-            },
-          },
+          { loader: 'css-loader', options: { minimize: isProduction } },
           { loader: 'sass-loader' },
         ],
-        exclude: /flexboxgrid/,
       },
       { test: /\.json$/, use: 'json-loader' },
       {
