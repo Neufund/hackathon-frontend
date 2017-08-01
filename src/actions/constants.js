@@ -11,3 +11,7 @@ export const ICO_PHASES = {
 
 export const LOAD_ICO_STATS = 'LOAD_ICO_STATS';
 
+export const SET_USER_ADDRESS = 'SET_USER_ADDRESS';
+export const SET_USER_LOADING = 'SET_USER_LOADING';
+export const LOAD_USER_NEUMARKS = 'LOAD_USER_NEUMARKS';
+
