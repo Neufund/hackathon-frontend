@@ -1,13 +1,22 @@
+import { LOAD_ICO_STATS } from '../actions/constants';
+
 const initialState = {
   loading: true,
   raised: null,
   investorNumber: null,
-  neumarkAmmount: null,
-  neumarkToEtherRatio: null,
+  neuMarkAmount: null,
+  neuMarkToEtherRatio: null,
 };
 
 export default function (state = initialState, action) {
-  switch (action) {
+  const { type, payload } = action;
+  switch (type) {
+    case LOAD_ICO_STATS:
+      return {
+        ...state,
+        loading: false,
+        neuMarkAmount: payload.neuMarkAmount,
+      };
     default:
       return state;
   }
