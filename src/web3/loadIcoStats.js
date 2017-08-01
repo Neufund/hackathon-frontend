@@ -5,5 +5,7 @@ export default async function loadIcoStats(address) {
   invariant(address, 'Specify adddress!');
   return {
     neuMarkAmount: parseInt(Math.random() * 10, 10),
+    ethratio: parseInt(Math.random() * 10, 10),
+    investorsNumber: parseInt(Math.random() * 10, 10),
   };
 }

@@ -8,7 +8,11 @@ const CountUp = ({ number }) => (
 );
 
 CountUp.propTypes = {
-  number: PropTypes.number.isRequired,
+  number: PropTypes.number,
+};
+
+CountUp.defaultProps = {
+  number: 0,
 };
 
 export default CountUp;
