@@ -1,11 +1,16 @@
+import moment from 'moment';
+import invariant from 'invariant';
+
 import config from '../config';
-import { LOAD_ICO_PARAMS } from '../actions/constants';
+import { LOAD_ICO_PARAMS, ICO_PHASES } from '../actions/constants';
+import { checkPhase } from '../actions/checkPhase';
 
 const initialState = {
   loading: true,
   address: config.icoContractAddress,
-  startDate: null,
-  endDate: null,
+  startDate: '2017-08-02T13:42:07.811Z', // @todo do not merge
+  endDate: '2017-08-05T13:42:07.811Z', // @todo do not merge
+  icoPhase: ICO_PHASES.UNKNOWN,
 };
 
 export default function (state = initialState, action) {
@@ -17,6 +22,7 @@ export default function (state = initialState, action) {
         loading: false,
         startDate: payload.startDate,
         endDate: payload.endDate,
+        icoPhase: checkPhase(payload),
       };
     default:
       return state;
@@ -26,4 +32,24 @@ export default function (state = initialState, action) {
 
 export function selectAddress(state) {
   return state.address;
+}
+
+export function selectStartDate(state) {
+  invariant(state.startDate, 'startDate is not defined!');
+
+  return moment(state.startDate);
+}
+
+export function selectEndDate(state) {
+  invariant(state.endDate, 'endDate is not defined!');
+
+  return moment(state.endDate);
+}
+
+export function selectIcoPhase(state) {
+  return state.icoPhase;
+}
+
+export function selectLoadingState(state) {
+  return state.loading;
 }

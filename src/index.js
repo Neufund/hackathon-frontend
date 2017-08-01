@@ -12,6 +12,8 @@ import reduxLogger from 'redux-logger';
 import reducer from './reducers';
 import appRoutes from './routes';
 import { deepfreeze } from './utils';
+import checkPhaseProcess from './actions/checkPhase';
+
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -79,5 +81,7 @@ if (process.env.NODE_ENV !== 'production') {
   /* eslint-enable import/no-extraneous-dependencies */
   /* eslint-enable global-require */
 }
+
+store.dispatch(checkPhaseProcess);
 
 render(store, appRoutes);
