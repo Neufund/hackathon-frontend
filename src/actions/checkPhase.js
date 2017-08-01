@@ -30,18 +30,18 @@ export function checkPhase(icoParams) {
 
 // long running action that makes sure that phase of the ICO is up to date
 // this is a great use case for sagas
-export default async function (dispatcher, getState) {
+export default async function (dispatch, getState) {
   // @todo reduce boilerplate
   // this is needed so initial state of the application is calculated correctly
   let lastPhase = checkPhase(getState().icoParameters);
-  dispatcher(changePhaseAction(lastPhase));
+  dispatch(changePhaseAction(lastPhase));
 
   while (true) { // eslint-disable-line
     await Bluebird.delay(1000); // eslint-disable-line
     const newPhase = checkPhase(getState().icoParameters);
 
     if (lastPhase !== newPhase) {
-      dispatcher(changePhaseAction(newPhase));
+      dispatch(changePhaseAction(newPhase));
       lastPhase = newPhase;
     }
   }

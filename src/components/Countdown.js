@@ -2,6 +2,8 @@ import React from 'react';
 import moment from 'moment';
 import { momentDurationObj, momentObj } from 'react-moment-proptypes';
 
+const SECOND = 1000;
+
 export const CountdownComponent = ({ duration }) => (
   <div>
     <span className="countdown-label">d</span><span className="value">{duration.days()}</span>
@@ -32,7 +34,7 @@ export class Countdown extends React.Component {
           duration: this.calculateDuration(),
         });
       },
-      1000
+      SECOND
     );
   }
 
