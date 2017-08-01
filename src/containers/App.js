@@ -3,24 +3,22 @@ import PropTypes from 'prop-types';
 import invariant from 'invariant';
 import { connect } from 'react-redux';
 
+import './App.css';
 import { loadIcoParams } from '../actions/loadIcoParams';
 import BeforeIco from '../containers/BeforeIco';
 import DuringIco from './DuringIco';
 import AfterIco from '../components/AfterIco';
 import { ICO_PHASES } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
+import Jumbotron from '../components/Jumbotron';
 
 export class AppComponent extends React.Component {
   componentDidMount() {
     this.props.loadIcoParams();
   }
 
-  render() {
-    const { icoPhase, isLoading } = this.props;
-
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
+  renderBody() {
+    const { icoPhase } = this.props;
 
     switch (icoPhase) {
       case ICO_PHASES.BEFORE_ICO:
@@ -32,6 +30,20 @@ export class AppComponent extends React.Component {
       default:
         return invariant(false, 'Unsupported ICO Phase');
     }
+  }
+
+  render() {
+    const { isLoading } = this.props;
+
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+
+    return (
+      <Jumbotron>
+        {this.renderBody()}
+      </Jumbotron>
+    );
   }
 }
 
