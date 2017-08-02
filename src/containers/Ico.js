@@ -4,15 +4,14 @@ import invariant from 'invariant';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
 
-import './App.css';
+import './Ico.css';
 import { loadIcoParams } from '../actions/loadIcoParams';
 import BeforeIco from '../containers/BeforeIco';
 import DuringIco from './DuringIco';
-import AfterIco from '../components/AfterIco';
+import AfterIco from './AfterIco';
 import { ICO_PHASES } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
 import Jumbotron from '../components/Jumbotron';
-import TopHeader from '../components/TopHeader';
 import MyStats from '../components/MyStats';
 
 export class AppComponent extends React.Component {
@@ -44,7 +43,6 @@ export class AppComponent extends React.Component {
 
     return (
       <div>
-        <TopHeader />
         <Jumbotron>
           {this.renderBody()}
         </Jumbotron>

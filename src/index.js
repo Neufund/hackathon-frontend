@@ -13,6 +13,7 @@ import reducer from './reducers';
 import appRoutes from './routes';
 import { deepfreeze } from './utils';
 import checkPhaseProcess from './actions/checkPhase';
+import App from './components/App';
 
 
 // Needed for onTouchTap
@@ -26,13 +27,15 @@ const render = (store, routes) => {
   ReactDOM.render(
     <MuiThemeProvider>
       <Provider store={store}>
-        <RouterHistoryContainer
-          routes={routes}
-          renderNotFound={() => {
-            store.dispatch(routeTo('/not-found'));
-            return <NotFound />;
-          }}
-        />
+        <App>
+          <RouterHistoryContainer
+            routes={routes}
+            renderNotFound={() => {
+              store.dispatch(routeTo('/not-found'));
+              return <NotFound />;
+            }}
+          />
+        </App>
       </Provider>
     </MuiThemeProvider>,
     root
