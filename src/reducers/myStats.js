@@ -22,6 +22,7 @@ export default function (state = initialState, action) {
     case SET_USER_NEUMARKS:
       return {
         ...state,
+        loading: false,
         neumarkAmmount: payload.neumarkAmmount,
       };
     default:
