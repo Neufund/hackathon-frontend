@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loadIcoStats } from '../actions/loadIcoStats';
 import { Countdown } from '../components/Countdown';
+import ProgressBar from '../components/ProgressBar';
 import './DuringIco.css';
 import config from '../config';
 import { selectStartDate } from '../reducers/icoParameters';
@@ -32,23 +33,29 @@ class DuringIco extends React.Component {
   render() {
     const { icoState, startDate } = this.props;
     return (
-      <div className="ico-header">
-        <h3>Commit funds to invest in the future</h3>
-        <h6>Total commited</h6>
+      <div className="ico-header during-ico">
+        <h3 className="title">Commit funds to invest in the future</h3>
+        <h6 className="normal-text">Total commited</h6>
         <h3>{ icoState.raised } ETH</h3>
-        <p>Bar</p>
-        <h6>Finishes in:</h6>
+        <ProgressBar percentage={80} />
+        <h6 className="normal-text">Finishes in:</h6>
         <Countdown finishDate={startDate} />
 
         <div className="money-container">
-          <div className="neumark">
-            <h6>How much Neumarks has been issued</h6>
-            <h3>{ icoState.neuMarkAmount } <span className="light-text">NEU</span></h3>
+          <div className="clearfix">
+            <div className="neumark">
+              <h6 className="normal-text">How much Neumarks has been issued</h6>
+              <h3>{ icoState.neuMarkAmount } <span className="lighter-text">NEU</span></h3>
+            </div>
+            <div className="investors">
+              <h6 className="normal-text">How many investors</h6>
+              <h3>{ icoState.investorNumber }</h3>
+            </div>
           </div>
-          <div className="investors">
-            <h6>How many investors</h6>
-            <h3>{ icoState.investorNumber }</h3>
-          </div>
+        </div>
+        <div className="actions">
+          <button className="active">Commit</button>
+          <button>etherscan.io</button>
         </div>
       </div>
     );
@@ -57,7 +64,7 @@ class DuringIco extends React.Component {
 
 DuringIco.propTypes = {
   loadIcoStats: PropTypes.func.isRequired,
-  startDate: PropTypes.isRequired,
+  startDate: PropTypes.string.isRequired,
   icoState: PropTypes.shape({
     raised: PropTypes.number,
     investorNumber: PropTypes.number,

@@ -4,7 +4,7 @@
   color: white;
 }
 .money-container{
-  width: 350px;
+  width: 400px;
   margin-left: auto;
   margin-right: auto;
   margin-top:50px;
@@ -18,6 +18,51 @@
 }
 .light-text{
   font-weight: lighter;
-  font-size: 16px;
+  font-size: 14px;
   color: #8298a1;
+  margin: 0;
+}
+.normal-text{
+  margin: 0;
+  font-weight: normal;
+  font-size: 14px;
+  color: #8298a1;
+}
+
+.during-ico h3{
+  margin-top: 5px;
+}
+
+.during-ico{
+  padding-top: 20px;
+}
+.during-ico .title{
+  margin-bottom: 20px;
+}
+.during-ico .actions{
+  display: block;
+  clear: both;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  width: 150px;
+}
+
+.clearfix{
+  clear: both !important;
+}
+
+.during-ico .actions button.active{
+  background-color: #ffe917;
+  border-radius: 4px;
+  color: #8298a1;
+}
+.during-ico .actions button{
+  background: none;
+  color: #8298a1;
+  width: 150px;
+  border: 0;
+  display: block;
+  font-weight: normal;
+  padding: 4px;
 }
