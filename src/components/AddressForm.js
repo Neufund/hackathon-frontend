@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 
-import { setUserAddress } from '../actions/setUserAddress';
+import { setUserAddress } from '../actions/myStatsActions';
 
 const AddressFormComponent = ({ handleSubmit }) => (
   <form onSubmit={handleSubmit}>
