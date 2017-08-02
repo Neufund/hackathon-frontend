@@ -1,0 +1,27 @@
+.MyStats {
+  padding: 10px 50px;
+
+  > * {
+    margin-left: 20px;
+    margin-right:20px;
+  }
+
+  .spinner {
+    height: 45px;
+    position: relative;
+    margin-top:20px;
+
+    .caption {
+      display: inline-block;
+      position: absolute;
+      height: 45px;
+      line-height: 45px;
+      font-size: 1.2em;
+      margin-left: 20px;
+    }
+  }
+
+  .neumarks {
+    font-size: 16px;
+  }
+}
