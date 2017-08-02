@@ -8,7 +8,7 @@ export default async function loadIcoParamsFromContract(address) {
   await Bluebird.delay(2000);
 
   return {
-    startDate: '2017-08-02T13:42:07.811Z',
-    endDate: '2017-08-10T13:42:07.811Z',
+    startDate: '2017-08-01T13:42:07.811Z',
+    endDate: '2017-08-01T13:42:07.811Z',
   };
 }
