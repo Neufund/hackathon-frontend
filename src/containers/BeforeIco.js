@@ -10,7 +10,7 @@ export const BeforeIcoComponent = ({ startDate }) => (
     <h1 className="center before-ico-header">Commit funds to invest in the future</h1>
 
     <p className="element-center center before-ico-para">
-      Commit ETH to get first hand oppurtunity to invest in startups
+      Commit ETH to get first hand opportunity to invest in startups
     </p>
 
     <div className="center">
