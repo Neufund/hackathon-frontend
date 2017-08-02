@@ -32,6 +32,5 @@ export const setUserAddress = address => async (dispatch) => {
   dispatch(setUserAddressAction(address));
   dispatch(setUserLoadingAction(true));
   const neumarks = await loadUserNeumarks(address);
-  dispatch(setUserLoadingAction(false));
   dispatch(setUserNeuMarksAction(neumarks));
 };
