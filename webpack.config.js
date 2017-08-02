@@ -13,8 +13,9 @@ export default {
     hot: true,
     // enable HMR on the server
     proxy: {
-      '/web3/*': {
+      '/node': {
         target: 'http://localhost:8545',
+        pathRewrite: { '^/node': '' },
       },
     },
   },

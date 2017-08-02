@@ -1,0 +1,158 @@
+{
+  "contract_name": "Crowdsale",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "startDate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxCap",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "minCap",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "neumarkToken",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "endDate",
+      "outputs": [
+        {
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "ownedToken",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "lockedAccount",
+      "outputs": [
+        {
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "name": "_ethToken",
+          "type": "address"
+        },
+        {
+          "name": "_neumarkController",
+          "type": "address"
+        },
+        {
+          "name": "_locked",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "type": "constructor"
+    }
+  ],
+  "unlinked_binary": "0x6060604052341561000f57600080fd5b6040516060806103308339810160405280805191906020018051919060200180519150505b60008054600160a060020a031916600160a060020a038381169190911782558316906382bfefc890604051602001526040518163ffffffff167c0100000000000000000000000000000000000000000000000000000000028152600401602060405180830381600087803b15156100aa57600080fd5b6102c65a03f115156100bb57600080fd5b505050604051805160028054600160a060020a0319908116600160a060020a039384161790915560018054909116918616919091179055505b5050505b610229806101076000396000f300606060405236156100805763ffffffff7c01000000000000000000000000000000000000000000000000000000006000350416630b97bc86811461008557806323548b8b146100aa5780633fa615b0146100cf578063a5dd4731146100f4578063c24a0f8b14610123578063dda343b014610148578063f9ae63d014610177575b600080fd5b341561009057600080fd5b6100986101a6565b60405190815260200160405180910390f35b34156100b557600080fd5b6100986101ae565b60405190815260200160405180910390f35b34156100da57600080fd5b6100986101bc565b60405190815260200160405180910390f35b34156100ff57600080fd5b6101076101c8565b604051600160a060020a03909116815260200160405180910390f35b341561012e57600080fd5b6100986101d7565b60405190815260200160405180910390f35b341561015357600080fd5b6101076101df565b604051600160a060020a03909116815260200160405180910390f35b341561018257600080fd5b6101076101ee565b604051600160a060020a03909116815260200160405180910390f35b635981d68781565b69021e19e0c9bab240000081565b670de0b6b3a764000081565b600254600160a060020a031681565b6359a9638781565b600154600160a060020a031681565b600054600160a060020a0316815600a165627a7a723058209a5003ffec2d6f8037979bf177bfca7e350d69a73d1f8b55d71c65459cb386b10029",
+  "networks": {
+    "1501678797733": {
+      "links": {},
+      "events": {
+        "0x623b3804fa71d67900d064613da8f94b9617215ee90799290593e1745087ad18": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "name": "purchaser",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "name": "beneficiary",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "name": "value",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "amount",
+              "type": "uint256"
+            }
+          ],
+          "name": "TokenPurchase",
+          "type": "event"
+        }
+      },
+      "updated_at": 1501679230535
+    },
+    "1501684590189": {
+      "events": {},
+      "links": {},
+      "address": "0x0290fb167208af455bb137780163b7b7a9a10c16",
+      "updated_at": 1501684948848
+    }
+  },
+  "schema_version": "0.0.5",
+  "updated_at": 1501684948848
+}
