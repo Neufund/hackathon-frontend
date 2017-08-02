@@ -1,4 +1,4 @@
-import { SET_USER_ADDRESS, SET_USER_LOADING, LOAD_USER_NEUMARKS } from '../actions/constants';
+import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from '../actions/constants';
 
 const initialState = {
   loading: false,
@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
         ...state,
         loading: payload.loading,
       };
-    case LOAD_USER_NEUMARKS:
+    case SET_USER_NEUMARKS:
       return {
         ...state,
         neumarkAmmount: payload.neumarkAmmount,
