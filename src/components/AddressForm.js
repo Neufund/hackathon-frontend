@@ -6,13 +6,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { setUserAddress } from '../actions/myStatsActions';
 
 const AddressFormComponent = ({ handleSubmit, submit }) => (
-  <form onSubmit={handleSubmit}>
+  <form className="addressForm" onSubmit={handleSubmit}>
     <Field
       name="address"
       component={TextField}
       floatingLabelText="Your Address"
     />
-    <RaisedButton label="Submit" onTouchTap={submit} />
+    <RaisedButton
+      label="Submit"
+      onTouchTap={submit}
+      style={{ marginLeft: '20px' }}
+    />
   </form>);
 
 AddressFormComponent.propTypes = {

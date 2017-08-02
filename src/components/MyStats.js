@@ -3,19 +3,29 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
 import AddressForm from './AddressForm';
+import './MyStats.scss';
 
-
-const MyStatsComponent = ({ address, loading, neumarkAmmount }) => (<div>
-  {address ?
-    <p>Your eth address: {address}</p>
-    :
-    <AddressForm />
-  }
-  {loading && <div>
-    <CircularProgress /> Obtaining data from smartcontract!
-  </div>}
-  {neumarkAmmount && <p>Currently you own {neumarkAmmount} NeuMarks</p>}
-</div>);
+const MyStatsComponent = ({ address, loading, neumarkAmmount }) => (
+  <div className="MyStats">
+    {address ?
+      <h3>Hello, you provided us with following eth address: {address}</h3>
+      :
+      <div>
+        <h3>
+          We werent able to automatically obtain your ETH address. If you provide us one we can show
+          your current commitment.
+        </h3>
+        <AddressForm />
+      </div>
+    }
+    {loading &&
+      <div className="spinner">
+        <CircularProgress />
+        <div className="caption">Obtaining data from smartcontract!</div>
+      </div>}
+    {neumarkAmmount &&
+    <p className="neumarks">Currently you own <b>{neumarkAmmount}</b> NeuMarks</p>}
+  </div>);
 
 MyStatsComponent.propTypes = {
   address: PropTypes.string,
