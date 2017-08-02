@@ -44,7 +44,14 @@ export default {
         test: /\.s?css$/,
         use: [
           { loader: 'style-loader' },
-          { loader: 'css-loader', options: { minimize: isProduction } },
+          { loader: 'css-loader',
+            options: {
+              minimize: isProduction,
+              importLoaders: 1,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+              camelCase: 'dashesOnly',
+            },
+          },
           { loader: 'sass-loader' },
         ],
       },

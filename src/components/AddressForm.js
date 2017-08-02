@@ -1,0 +1,28 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { reduxForm, Field } from 'redux-form';
+import { TextField } from 'redux-form-material-ui';
+import RaisedButton from 'material-ui/RaisedButton';
+import { setUserAddress } from '../actions/myStatsActions';
+
+const AddressFormComponent = ({ handleSubmit, submit }) => (
+  <form onSubmit={handleSubmit}>
+    <Field
+      name="address"
+      component={TextField}
+      floatingLabelText="Your Address"
+    />
+    <RaisedButton label="Submit" onTouchTap={submit} />
+  </form>);
+
+AddressFormComponent.propTypes = {
+  handleSubmit: PropTypes.func.isRequired,
+  submit: PropTypes.func.isRequired,
+};
+
+export default reduxForm({
+  form: 'addresform',
+  onSubmit: (values, dispatch) => {
+    dispatch(setUserAddress(values.address));
+  },
+})(AddressFormComponent);

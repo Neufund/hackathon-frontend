@@ -1,11 +1,30 @@
+import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from '../actions/constants';
+
 const initialState = {
-  loading: true,
+  loading: false,
   address: null,
   neumarkAmmount: null,
 };
 
 export default function (state = initialState, action) {
-  switch (action) {
+  const { type, payload } = action;
+  switch (type) {
+    case SET_USER_ADDRESS:
+      return {
+        ...state,
+        address: payload.address,
+      };
+    case SET_USER_LOADING:
+      return {
+        ...state,
+        loading: payload.loading,
+      };
+    case SET_USER_NEUMARKS:
+      return {
+        ...state,
+        loading: false,
+        neumarkAmmount: payload.neumarkAmmount,
+      };
     default:
       return state;
   }
