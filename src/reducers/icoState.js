@@ -16,6 +16,9 @@ export default function (state = initialState, action) {
         ...state,
         loading: false,
         neuMarkAmount: payload.neuMarkAmount,
+        raised: payload.raised,
+        investorNumber: payload.investorNumber,
+        neuMarkToEtherRatio: payload.neuMarkToEtherRatio,
       };
     default:
       return state;

@@ -1,6 +1,23 @@
 .ico-header{
   text-align: center;
-  height:500px;
-  background: #31708f;
+  height: 500px;
   color: white;
+}
+.money-container{
+  width: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:50px;
+}
+.money-container .neumark{
+  float:left;
+  margin-right:30px;
+}
+.money-container .investors{
+  float:left;
+}
+.light-text{
+  font-weight: lighter;
+  font-size: 16px;
+  color: #8298a1;
 }
