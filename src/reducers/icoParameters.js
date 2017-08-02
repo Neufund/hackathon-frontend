@@ -8,8 +8,8 @@ import { checkPhase } from '../actions/checkPhase';
 const initialState = {
   loading: true,
   address: config.icoContractAddress,
-  startDate: '2017-08-02T13:42:07.811Z', // @todo do not merge
-  endDate: '2017-08-05T13:42:07.811Z', // @todo do not merge
+  startDate: null,
+  endDate: null,
   icoPhase: ICO_PHASES.UNKNOWN,
 };
 
