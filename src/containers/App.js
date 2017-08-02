@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import invariant from 'invariant';
 import { connect } from 'react-redux';
+import CircularProgress from 'material-ui/CircularProgress';
 
 import './App.css';
 import { loadIcoParams } from '../actions/loadIcoParams';
@@ -20,7 +21,11 @@ export class AppComponent extends React.Component {
   }
 
   renderBody() {
-    const { icoPhase } = this.props;
+    const { isLoading, icoPhase } = this.props;
+
+    if (isLoading) {
+      return <div><CircularProgress className="center-loading-spinner" /></div>;
+    }
 
     switch (icoPhase) {
       case ICO_PHASES.BEFORE_ICO:
@@ -35,11 +40,7 @@ export class AppComponent extends React.Component {
   }
 
   render() {
-    const { isLoading } = this.props;
-
-    if (isLoading) {
-      return <div>Loading...</div>;
-    }
+    const { icoPhase } = this.props;
 
     return (
       <div>
@@ -48,7 +49,7 @@ export class AppComponent extends React.Component {
           {this.renderBody()}
         </Jumbotron>
 
-        <MyStats />
+        { (icoPhase === ICO_PHASES.DURING_ICO || icoPhase === ICO_PHASES.AFTER_ICO) && <MyStats />}
       </div>
     );
   }
