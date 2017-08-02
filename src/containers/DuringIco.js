@@ -6,7 +6,7 @@ import { Countdown } from '../components/Countdown';
 import ProgressBar from '../components/ProgressBar';
 import './DuringIco.css';
 import config from '../config';
-import { selectStartDate } from '../reducers/icoParameters';
+import { selectEndDate } from '../reducers/icoParameters';
 
 class DuringIco extends React.Component {
 
@@ -31,7 +31,7 @@ class DuringIco extends React.Component {
   }
 
   render() {
-    const { icoState, startDate } = this.props;
+    const { icoState, finishDate } = this.props;
     return (
       <div className="ico-header during-ico">
         <h3 className="title">Commit funds to invest in the future</h3>
@@ -39,13 +39,13 @@ class DuringIco extends React.Component {
         <h3>{ icoState.raised } ETH</h3>
         <ProgressBar percentage={80} />
         <h6 className="normal-text">Finishes in:</h6>
-        <Countdown finishDate={startDate} />
+        <Countdown finishDate={finishDate} />
 
         <div className="money-container">
           <div className="clearfix">
             <div className="neumark">
               <h6 className="normal-text">How much Neumarks has been issued</h6>
-              <h3>{ icoState.neuMarkAmount } <span className="lighter-text">NEU</span></h3>
+              <h3>{ icoState.neuMarkAmount } <span className="light-text">NEU</span></h3>
             </div>
             <div className="investors">
               <h6 className="normal-text">How many investors</h6>
@@ -64,7 +64,7 @@ class DuringIco extends React.Component {
 
 DuringIco.propTypes = {
   loadIcoStats: PropTypes.func.isRequired,
-  startDate: PropTypes.string.isRequired,
+  finishDate: PropTypes.string.isRequired,
   icoState: PropTypes.shape({
     raised: PropTypes.number,
     investorNumber: PropTypes.number,
@@ -76,7 +76,7 @@ DuringIco.propTypes = {
 function mapStateToProps(state) {
   return {
     icoState: state.icoState,
-    startDate: selectStartDate(state.icoParameters),
+    finishDate: selectEndDate(state.icoParameters),
   };
 }
 
