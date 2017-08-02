@@ -47,7 +47,6 @@ export default {
           { loader: 'css-loader',
             options: {
               minimize: isProduction,
-              modules: true,
               importLoaders: 1,
               localIdentName: '[name]__[local]___[hash:base64:5]',
               camelCase: 'dashesOnly',

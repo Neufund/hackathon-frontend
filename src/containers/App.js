@@ -2,42 +2,54 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import invariant from 'invariant';
 import { connect } from 'react-redux';
+import CircularProgress from 'material-ui/CircularProgress';
 
+import './App.css';
 import { loadIcoParams } from '../actions/loadIcoParams';
 import BeforeIco from '../containers/BeforeIco';
 import DuringIco from './DuringIco';
 import AfterIco from '../components/AfterIco';
 import { ICO_PHASES } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
+import Jumbotron from '../components/Jumbotron';
+import TopHeader from '../components/TopHeader';
 import MyStats from '../components/MyStats';
-
-function chooseCounter(icoPhase) {
-  switch (icoPhase) {
-    case ICO_PHASES.BEFORE_ICO:
-      return <BeforeIco />;
-    case ICO_PHASES.DURING_ICO:
-      return <DuringIco />;
-    case ICO_PHASES.AFTER_ICO:
-      return <AfterIco />;
-    default:
-      return invariant(false, 'Unsupported ICO Phase');
-  }
-}
 
 export class AppComponent extends React.Component {
   componentDidMount() {
     this.props.loadIcoParams();
   }
 
-  render() {
-    const { icoPhase, isLoading } = this.props;
+  renderBody() {
+    const { isLoading, icoPhase } = this.props;
+
     if (isLoading) {
-      return <div>Loading...</div>;
+      return <div><CircularProgress className="center-loading-spinner" /></div>;
     }
+
+    switch (icoPhase) {
+      case ICO_PHASES.BEFORE_ICO:
+        return <BeforeIco />;
+      case ICO_PHASES.DURING_ICO:
+        return <DuringIco />;
+      case ICO_PHASES.AFTER_ICO:
+        return <AfterIco />;
+      default:
+        return invariant(false, 'Unsupported ICO Phase');
+    }
+  }
+
+  render() {
+    const { icoPhase } = this.props;
+
     return (
       <div>
-        {chooseCounter(icoPhase)}
-        <MyStats />
+        <TopHeader />
+        <Jumbotron>
+          {this.renderBody()}
+        </Jumbotron>
+
+        { (icoPhase === ICO_PHASES.DURING_ICO || icoPhase === ICO_PHASES.AFTER_ICO) && <MyStats />}
       </div>
     );
   }

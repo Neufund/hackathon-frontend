@@ -1,24 +1,79 @@
-.App {
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 300;
+}
+
+h1 {
+  font-size: 22px;
+  line-height: 24px;
+}
+
+.center {
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.gray-caption {
+  color: #b8cbd4;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+.element-center {
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.App-intro {
-  font-size: large;
+.before-ico-para {
+  padding-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.top-header {
+  height: 45px;
+}
+.app-logo {
+  margin-top: 5px;
+}
+.app-logo img{
+  height: 29.88px;	width: 29.54px;
+
+}
+.app-header {
+  background-color: white;
+  color:black;
+  border-left: 1px solid #424A52;;
+  margin-left: 20px;
+}
+.header-paragraph , .ico-box{
+  margin-bottom: 20px;
+}
+.app-header .app-name,
+.app-header span,
+.app-logo{
+  float: left;
+}
+.app-header h4{
+  height: 19px;
+  width: 253px;
+  color: #262B2F;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 17px;
+  padding-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.app-header span.powerd-by-neufund {
+  height: 20px;
+  color: #4A4A4A;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 20px;
+  margin-top:11px;
+}
+
+.center-loading-spinner {
+  margin-left: auto;
+  margin-right: auto;
+  position: static !important;
+  display: block !important;
+  margin-top: 65px;
 }

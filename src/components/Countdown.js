@@ -1,15 +1,23 @@
 import React from 'react';
 import moment from 'moment';
+import zeroFill from 'zero-fill';
 import { momentDurationObj, momentObj } from 'react-moment-proptypes';
+import './Countdown.css';
+
+const numberFormatter = zeroFill(2);
 
 const SECOND = 1000;
 
 export const CountdownComponent = ({ duration }) => (
   <div>
-    <span className="countdown-label">d</span><span className="value">{duration.days()}</span>
-    <span className="countdown-label">h</span><span className="value">{duration.hours()}</span>
-    <span className="countdown-label">m</span><span className="value">{duration.minutes()}</span>
-    <span className="countdown-label">s</span><span className="value">{duration.seconds()}</span>
+    <span className="countdown-label">d</span>
+    <span className="countdown-value">{numberFormatter(duration.days())}</span>
+    <span className="countdown-label">h</span>
+    <span className="countdown-value">{numberFormatter(duration.hours())}</span>
+    <span className="countdown-label">m</span>
+    <span className="countdown-value">{numberFormatter(duration.minutes())}</span>
+    <span className="countdown-label">s</span>
+    <span className="countdown-value">{numberFormatter(duration.seconds())}</span>
   </div>
 );
 

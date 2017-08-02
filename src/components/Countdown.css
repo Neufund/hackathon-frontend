@@ -1,0 +1,15 @@
+.countdown-label {
+  color: #8FA2AB;
+  margin-right: 10px;
+  font-size: 12px;
+  vertical-align: middle;
+  line-height: 20px;
+}
+
+.countdown-value {
+  color: white;
+  font-size: 15px;
+  margin-right: 15px;
+  vertical-align: middle;
+  line-height: 20px;
+}
