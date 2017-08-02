@@ -11,7 +11,9 @@ const MyStatsComponent = ({ address, loading, neumarkAmmount }) => (<div>
     :
     <AddressForm />
   }
-  {loading && <CircularProgress />}
+  {loading && <div>
+    <CircularProgress /> Obtaining data from smartcontract!
+  </div>}
   {neumarkAmmount && <p>Currently you own {neumarkAmmount} NeuMarks</p>}
 </div>);
 
