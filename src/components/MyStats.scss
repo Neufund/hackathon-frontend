@@ -1,23 +1,23 @@
-.MyStats {
+.my-stats {
   padding: 10px 50px;
 
   > * {
+    margin-right: 20px;
     margin-left: 20px;
-    margin-right:20px;
   }
 
   .spinner {
-    height: 45px;
     position: relative;
-    margin-top:20px;
+    margin-top: 20px;
+    height: 45px;
 
     .caption {
       display: inline-block;
       position: absolute;
+      margin-left: 20px;
       height: 45px;
       line-height: 45px;
       font-size: 1.2em;
-      margin-left: 20px;
     }
   }
 

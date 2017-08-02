@@ -6,7 +6,7 @@ import AddressForm from './AddressForm';
 import './MyStats.scss';
 
 const MyStatsComponent = ({ address, loading, neumarkAmmount }) => (
-  <div className="MyStats">
+  <div className="my-stats">
     {address ?
       <h3>Hello, you provided us with following eth address: {address}</h3>
       :
