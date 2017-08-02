@@ -14,6 +14,7 @@ export function checkPhase(icoParams) {
   const now = moment();
 
   const startDate = selectStartDate(icoParams);
+
   const endDate = selectEndDate(icoParams);
 
   if (now.isBefore(startDate)) {
@@ -33,11 +34,16 @@ export function checkPhase(icoParams) {
 export default async function (dispatch, getState) {
   // @todo reduce boilerplate
   // this is needed so initial state of the application is calculated correctly
-  let lastPhase = checkPhase(getState().icoParameters);
-  dispatch(changePhaseAction(lastPhase));
+  // let lastPhase = checkPhase(getState().icoParameters);
+  // dispatch(changePhaseAction(lastPhase));
+
+  let lastPhase;
 
   while (true) { // eslint-disable-line
     await Bluebird.delay(1000); // eslint-disable-line
+
+    // @todo: change this ASAP
+    if (!getState().icoParameters.startDate) continue; // eslint-disable-line
     const newPhase = checkPhase(getState().icoParameters);
 
     if (lastPhase !== newPhase) {

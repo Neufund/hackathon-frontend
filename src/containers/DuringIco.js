@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { momentObj } from 'react-moment-proptypes';
 import { loadIcoStats } from '../actions/loadIcoStats';
 import { Countdown } from '../components/Countdown';
 import ProgressBar from '../components/ProgressBar';
 import './DuringIco.css';
 import config from '../config';
 import { selectEndDate } from '../reducers/icoParameters';
+
 
 class DuringIco extends React.Component {
 
@@ -64,7 +66,7 @@ class DuringIco extends React.Component {
 
 DuringIco.propTypes = {
   loadIcoStats: PropTypes.func.isRequired,
-  finishDate: PropTypes.string.isRequired,
+  finishDate: momentObj.isRequired,
   icoState: PropTypes.shape({
     raised: PropTypes.number,
     investorNumber: PropTypes.number,
