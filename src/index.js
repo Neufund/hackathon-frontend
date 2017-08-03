@@ -14,7 +14,8 @@ import appRoutes from './routes';
 import { deepfreeze } from './utils';
 import checkPhaseProcess from './actions/checkPhase';
 import App from './components/App';
-
+import getAccount from './web3/getAccount';
+import { setUserAddress } from './actions/myStatsActions';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -88,3 +89,15 @@ if (process.env.NODE_ENV !== 'production') {
 store.dispatch(checkPhaseProcess);
 
 render(store, appRoutes);
+
+// yea I know separate method somewhere
+getAccount().then((account) => {
+  if (account !== undefined) {
+    // eslint-disable-next-line no-console
+    console.log(`got account from web3: ${account} `);
+    setUserAddress(account, true)(store.dispatch);
+  } else {
+    // eslint-disable-next-line no-console
+    console.log('didn\'t get any account from web3');
+  }
+});
