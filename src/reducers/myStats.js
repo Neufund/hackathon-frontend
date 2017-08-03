@@ -14,6 +14,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         address: payload.address,
+        addressFromWeb3: payload.addressFromWeb3,
       };
     case SET_USER_LOADING:
       return {

@@ -1,12 +1,12 @@
 import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from './constants';
 import loadUserNeumarksFromWeb3 from '../web3/loadUserNeumarks';
 
-export function setUserAddressAction(address, fromWeb3) {
+export function setUserAddressAction(address, addressFromWeb3) {
   return {
     type: SET_USER_ADDRESS,
     payload: {
       address,
-      fromWeb3,
+      addressFromWeb3,
     },
   };
 }
