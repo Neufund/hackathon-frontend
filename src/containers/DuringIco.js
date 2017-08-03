@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { momentObj } from 'react-moment-proptypes';
+import { routeTo } from 'redux-router-kit';
 import { loadIcoStats } from '../actions/loadIcoStats';
 import { Countdown } from '../components/Countdown';
 import ProgressBar from '../components/ProgressBar';
@@ -33,7 +34,7 @@ class DuringIco extends React.Component {
   }
 
   render() {
-    const { icoState, finishDate } = this.props;
+    const { icoState, finishDate, onCommitClick } = this.props;
     return (
       <div className="ico-header during-ico">
         <h3 className="title">Commit funds to invest in the future</h3>
@@ -56,7 +57,7 @@ class DuringIco extends React.Component {
           </div>
         </div>
         <div className="actions">
-          <button className="active">Commit</button>
+          <button className="active" onClick={onCommitClick}>Commit</button>
           <button>etherscan.io</button>
         </div>
       </div>
@@ -73,6 +74,7 @@ DuringIco.propTypes = {
     neuMarkAmount: PropTypes.number,
     neuMarkToEtherRatio: PropTypes.number,
   }).isRequired,
+  onCommitClick: PropTypes.func.isRequired,
 };
 
 function mapStateToProps(state) {
@@ -85,6 +87,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loadIcoStats: () => dispatch(loadIcoStats),
+    onCommitClick: () => dispatch(routeTo('/commit')),
   };
 }
 
