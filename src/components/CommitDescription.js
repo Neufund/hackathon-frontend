@@ -20,7 +20,7 @@ CommitDescriptionComponent.propTypes = {
 
 // eslint-disable-next-line no-unused-vars
 const MapStateToProps = state => ({
-  address: '0x223479080po0o98',
+  address: 'address placeholder 0x223479080po0o98',
   code: 'asdasdasdadad',
 });
 

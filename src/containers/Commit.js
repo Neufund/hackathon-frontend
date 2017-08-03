@@ -6,10 +6,10 @@ import CommitDescription from '../components/CommitDescription';
 import CommitWeb3 from '../components/CommitWeb3';
 import './Commit.scss';
 
-const CommitComponent = ({ web3Present }) => (
+const CommitComponent = ({ weCanSendTransaction }) => (
   <div className="commit">
-    <h1>Hello, Its great that you are interested in commiting in ICBM!</h1>
-    {web3Present ?
+    <h1>Hello, Its great that you are interested in committing in our ICBM!</h1>
+    {weCanSendTransaction ?
       <CommitWeb3 />
       :
       <CommitDescription />
@@ -17,14 +17,11 @@ const CommitComponent = ({ web3Present }) => (
   </div>);
 
 CommitComponent.propTypes = {
-  web3Present: PropTypes.bool.isRequired,
+  weCanSendTransaction: PropTypes.bool.isRequired,
 };
 
-// eslint-disable-next-line no-unused-vars,arrow-body-style
-const mapStateToProps = (state) => {
-  return {
-    web3Present: true,
-  };
-};
+const mapStateToProps = state => ({
+  weCanSendTransaction: state.myStats.addressFromWeb3 === true,
+});
 
 export default connect(mapStateToProps)(CommitComponent);

@@ -7,10 +7,13 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { commitETH } from '../actions/commitActions';
 import './CommitWeb3.scss';
 
-const CommitWeb3Component = ({ handleSubmit, submit }) => (
+const CommitWeb3Component = ({ userAddress, handleSubmit, submit }) => (
   <div>
     <p>
       We detected web3 in your system that means you can perform commitment directly from our page.
+    </p>
+    <p>
+      Your address: {userAddress}
     </p>
     <form className="addressForm" onSubmit={handleSubmit}>
       <Field
@@ -28,16 +31,20 @@ const CommitWeb3Component = ({ handleSubmit, submit }) => (
 );
 
 CommitWeb3Component.propTypes = {
+  userAddress: PropTypes.string.isRequired,
   handleSubmit: PropTypes.func.isRequired,
   submit: PropTypes.func.isRequired,
 };
 
 const CommitWeb3Form = reduxForm({
   form: 'commitform',
-// eslint-disable-next-line no-unused-vars
-  onSubmit: (values, dispatch) => {
-    dispatch(commitETH(values.amount));
+  onSubmit: (values, dispatch, props) => {
+    dispatch(commitETH(values.amount, props.userAddress));
   },
 })(CommitWeb3Component);
 
-export default connect()(CommitWeb3Form);
+const mapStateToProps = state => ({
+  userAddress: state.myStats.address,
+});
+
+export default connect(mapStateToProps)(CommitWeb3Form);
