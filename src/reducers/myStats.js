@@ -3,6 +3,7 @@ import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from '../action
 const initialState = {
   loading: false,
   address: null,
+  addressFromWeb3: null,
   neumarkAmmount: null,
 };
 
