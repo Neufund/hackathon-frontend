@@ -6,6 +6,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 
 import './Ico.css';
 import { loadIcoParams } from '../actions/loadIcoParams';
+import { loadWeb3Settings } from '../actions/loadWeb3Settings';
 import BeforeIco from '../containers/BeforeIco';
 import DuringIco from './DuringIco';
 import AfterIco from './AfterIco';
@@ -14,9 +15,10 @@ import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
 import Jumbotron from '../components/Jumbotron';
 import MyStats from '../components/MyStats';
 
-export class AppComponent extends React.Component {
+export class IcoComponent extends React.Component {
   componentDidMount() {
     this.props.loadIcoParams();
+    this.props.loadWeb3Settings();
   }
 
   renderBody() {
@@ -53,8 +55,9 @@ export class AppComponent extends React.Component {
   }
 }
 
-AppComponent.propTypes = {
+IcoComponent.propTypes = {
   loadIcoParams: PropTypes.func.isRequired,
+  loadWeb3Settings: PropTypes.func.isRequired,
   icoPhase: PropTypes.oneOf(['BEFORE_ICO', 'DURING_ICO', 'AFTER_ICO', 'UNKNOWN']).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
@@ -69,8 +72,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     loadIcoParams: () => dispatch(loadIcoParams),
-
+    loadWeb3Settings: () => dispatch(loadWeb3Settings),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(IcoComponent);

@@ -9,6 +9,7 @@ let web3Instance;
 // Checking if Web3 has been injected by the browser (Mist/MetaMask)
 if (typeof web3 !== 'undefined') {
   web3Instance = new Web3(web3.currentProvider);
+  web3Instance.eth.defaultAccount = web3.eth.defaultAccount;
 } else {
   web3Instance = new Web3(new Web3.providers.HttpProvider(config.ethereumNode));
 }
