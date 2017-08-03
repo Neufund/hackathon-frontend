@@ -1,14 +1,23 @@
 import invariant from 'invariant';
-import Bluebird from 'bluebird';
+import { Crowdsale } from './contracts';
+import { asMomentDate } from './utils';
 
 export default async function loadIcoParamsFromContract(address) {
-  // @todo implement it
   invariant(address, 'Specify adddress!');
 
-  await Bluebird.delay(2000);
+  const icoContract = Crowdsale(address);
+
+  const [startDate, endDate, lockedAccountAddress, neumarkTokenAddress] = await Promise.all([
+    icoContract.startDateAsync().then(asMomentDate),
+    icoContract.endDateAsync().then(asMomentDate),
+    icoContract.lockedAccountAsync(),
+    icoContract.neumarkTokenAsync(),
+  ]);
 
   return {
-    startDate: '2017-08-02T13:42:07.811Z',
-    endDate: '2017-08-10T13:42:07.811Z',
+    startDate: startDate.toISOString(),
+    endDate: endDate.toISOString(),
+    lockedAccountAddress,
+    neumarkTokenAddress,
   };
 }

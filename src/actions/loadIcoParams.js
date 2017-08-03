@@ -2,20 +2,27 @@ import { selectAddress } from '../reducers/icoParameters';
 import { LOAD_ICO_PARAMS } from './constants';
 import loadIcoParamsFromContract from '../web3/loadIcoParamsFromContract';
 
-export function loadIcoParamsAction(startDate, endDate) {
+export function loadIcoParamsAction(startDate, endDate, lockedAccountAddress, neumarkTokenAddress) {
   return {
     type: LOAD_ICO_PARAMS,
     payload: {
       startDate,
       endDate,
+      lockedAccountAddress,
+      neumarkTokenAddress,
     },
   };
 }
 
 export async function loadIcoParams(dispatch, getState) {
   const address = selectAddress(getState().icoParameters);
-  const { startDate, endDate } = await loadIcoParamsFromContract(address);
+  const {
+    startDate,
+    endDate,
+    lockedAccountAddress,
+    neumarkTokenAddress,
+  } = await loadIcoParamsFromContract(address);
 
-  dispatch(loadIcoParamsAction(startDate, endDate));
+  dispatch(loadIcoParamsAction(startDate, endDate, lockedAccountAddress, neumarkTokenAddress));
 }
 

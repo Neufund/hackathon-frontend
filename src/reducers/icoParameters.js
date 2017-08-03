@@ -23,6 +23,8 @@ export default function (state = initialState, action) {
         startDate: payload.startDate,
         endDate: payload.endDate,
         icoPhase: checkPhase(payload),
+        lockedAccountAddress: payload.lockedAccountAddress,
+        neumarkTokenAddress: payload.neumarkTokenAddress,
       };
     default:
       return state;
@@ -32,6 +34,14 @@ export default function (state = initialState, action) {
 
 export function selectAddress(state) {
   return state.address;
+}
+
+export function selectLockedAccountAddress(state) {
+  return state.lockedAccountAddress;
+}
+
+export function selectNeumarkTokenAddress(state) {
+  return state.neumarkTokenAddress;
 }
 
 export function selectStartDate(state) {

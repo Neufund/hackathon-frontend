@@ -1,4 +1,4 @@
-import { selectAddress } from '../reducers/icoParameters';
+import { selectLockedAccountAddress, selectNeumarkTokenAddress } from '../reducers/icoParameters';
 import { LOAD_ICO_STATS } from './constants';
 import loadIcoStatsFromContract from '../web3/loadIcoStats';
 
@@ -15,8 +15,14 @@ export function loadIcoStatsAction(raised, investorNumber, neuMarkAmount, neuMar
 }
 
 export async function loadIcoStats(dispatch, getState) {
-  const address = selectAddress(getState().icoParameters);
-  const { raised, investorNumber, neuMarkAmount,
-    neuMarkToEtherRatio } = await loadIcoStatsFromContract(address);
+  const lockedAccountAddress = selectLockedAccountAddress(getState().icoParameters);
+  const neumarkTokenAddress = selectNeumarkTokenAddress(getState().icoParameters);
+
+  const {
+    raised,
+    investorNumber,
+    neuMarkAmount,
+    neuMarkToEtherRatio,
+  } = await loadIcoStatsFromContract(lockedAccountAddress, neumarkTokenAddress);
   dispatch(loadIcoStatsAction(raised, investorNumber, neuMarkAmount, neuMarkToEtherRatio));
 }
