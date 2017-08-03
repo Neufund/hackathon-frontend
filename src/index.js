@@ -15,7 +15,7 @@ import { deepfreeze } from './utils';
 import checkPhaseProcess from './actions/checkPhase';
 import App from './components/App';
 import getAccount from './web3/getAccount';
-import { setUserAddressAction } from './actions/myStatsActions';
+import { setUserAddress } from './actions/myStatsActions';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
@@ -95,8 +95,7 @@ getAccount().then((account) => {
   if (account !== undefined) {
     // eslint-disable-next-line no-console
     console.log(`got account from web3: ${account} `);
-    const action = setUserAddressAction(account, true);
-    store.dispatch(action);
+    setUserAddress(account, true)(store.dispatch);
   } else {
     // eslint-disable-next-line no-console
     console.log('didn\'t get any account from web3');

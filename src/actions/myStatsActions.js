@@ -1,5 +1,5 @@
 import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from './constants';
-import loadUserNeumarks from '../web3/loadUserNeumarks';
+import loadUserNeumarksFromWeb3 from '../web3/loadUserNeumarks';
 
 export function setUserAddressAction(address, fromWeb3) {
   return {
@@ -32,6 +32,6 @@ export function setUserNeuMarksAction(neumarkAmmount) {
 export const setUserAddress = (address, fromWeb3) => async (dispatch) => {
   dispatch(setUserAddressAction(address, fromWeb3));
   dispatch(setUserLoadingAction(true));
-  const neumarks = await loadUserNeumarks(address);
+  const neumarks = await loadUserNeumarksFromWeb3(address);
   dispatch(setUserNeuMarksAction(neumarks));
 };
