@@ -13,14 +13,14 @@ class TokenChart extends React.Component {
       name: `tokenChartCanvas${this.props.id}`,
       width: 1200,
       height: 200,
-      circleRadius: 10,
+      radius: 10,
       limit: 10000,
+      initX: 100,
       circleBackground: '#fff000',
-      hoverBackground: '#000a6d',
+      hoverBackground: 'orange',
     };
     const chart = new Chart(config);
     chart.drawChart();
-    chart.circle(100, config.circleBackground);
   }
 
   render() {
