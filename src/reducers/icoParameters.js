@@ -10,6 +10,8 @@ const initialState = {
   address: config.icoContractAddress,
   startDate: null,
   endDate: null,
+  minCap: 0,
+  maxCap: 0,
   icoPhase: ICO_PHASES.UNKNOWN,
 };
 
@@ -25,6 +27,8 @@ export default function (state = initialState, action) {
         icoPhase: checkPhase(payload),
         lockedAccountAddress: payload.lockedAccountAddress,
         neumarkTokenAddress: payload.neumarkTokenAddress,
+        minCap: payload.minCap,
+        maxCap: payload.maxCap,
       };
     default:
       return state;

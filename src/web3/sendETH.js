@@ -1,21 +1,43 @@
+import Promise from 'bluebird';
 import invariant from 'invariant';
+import { routeTo } from 'redux-router-kit';
+import web3 from './web3Provider';
 import { Crowdsale } from './contracts/index';
+import {
+  commitingStartedAction,
+  commitingTransactionSubmittedAction,
+  commitingDoneAction,
+  commitingError,
+} from '../actions/commitActions';
 
-export default async (contractAddress, amount, userAddress) => {
-  // @todo implement it
-  invariant(amount, 'Specify amount');
-  invariant(userAddress, 'Specify userAddress');
-// eslint-disable-next-line no-console
-  console.log(`committing ${amount} ETH from ${userAddress}`);
+export default (contractAddress, amount, userAddress) => async (dispatch) => {
+  try {
+    invariant(amount, 'Specify amount');
+    invariant(userAddress, 'Specify userAddress');
+    const weiAmmount = web3.toWei(amount, 'ether');
 
-  const contract = Crowdsale(contractAddress);
+    dispatch(commitingStartedAction());
 
-  contract.commit(
-    { value: amount * (10 ** 18), from: userAddress },
-    (err, result) => {
-      console.log('transaction');
-      console.log(err);
-      console.log(result);
-    }
-  );
+    const contract = Crowdsale(contractAddress);
+
+    await contract.commitAsync(
+      { value: weiAmmount, from: userAddress }
+    );
+    dispatch(commitingTransactionSubmittedAction());
+
+
+    const confirmation = web3.eth.filter('latest', async (error) => {
+      if (error) {
+        return;
+      }
+      // @todo probably we need to check somehow if block holds our transacation?
+      confirmation.stopWatching();
+
+      await Promise.delay(10000);
+      dispatch(commitingDoneAction());
+      dispatch(routeTo('/'));
+    });
+  } catch (e) {
+    dispatch(commitingError(e));
+  }
 };
