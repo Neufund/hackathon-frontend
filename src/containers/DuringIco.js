@@ -53,7 +53,7 @@ class DuringIco extends React.Component {
       <div className="ico-header during-ico">
         <h3 className="title">Commit funds to invest in the future</h3>
         <h6 className="normal-text">Total commited</h6>
-        <h3>{ icoState.raised } ETH</h3>
+        <h3>{ icoState.raised.toFixed(3) } ETH</h3>
         <ProgressBar raised={icoState.raised} minCap={minCap} maxCap={maxCap} />
         <h6 className="normal-text">Finishes in:</h6>
         <Countdown finishDate={finishDate} />
