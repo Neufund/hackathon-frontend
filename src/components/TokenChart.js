@@ -3,10 +3,6 @@ import PropTypes from 'prop-types';
 import Chart from '../tokenChart';
 
 class TokenChart extends React.Component {
-  constructor(...props) {
-    super(...props);
-    console.log(props);
-  }
 
   componentDidMount() {
     const config = {
