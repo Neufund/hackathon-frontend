@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Chart from '../tokenChart';
+import './TokenChart.scss';
 
 class TokenChart extends React.Component {
 
   componentDidMount() {
     const config = {
       name: `tokenChartCanvas${this.props.id}`,
-      width: 1200,
+      width: 600,
       height: 200,
       radius: 10,
       limit: 10000,
@@ -21,7 +22,10 @@ class TokenChart extends React.Component {
 
   render() {
     const { id } = this.props;
-    return (<canvas width="600" height="200" id={`tokenChartCanvas${id}`} />
+    return (
+      <div className="token-chart">
+        <canvas width="600" height="200" id={`tokenChartCanvas${id}`} />
+      </div>
     );
   }
 }
