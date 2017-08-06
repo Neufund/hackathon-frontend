@@ -1,4 +1,3 @@
-import Promise from 'bluebird';
 import invariant from 'invariant';
 import { routeTo } from 'redux-router-kit';
 import web3 from './web3Provider';
@@ -33,7 +32,6 @@ export default (contractAddress, amount, userAddress) => async (dispatch) => {
       // @todo probably we need to check somehow if block holds our transacation?
       confirmation.stopWatching();
 
-      await Promise.delay(10000);
       dispatch(commitingDoneAction());
       dispatch(routeTo('/'));
     });
