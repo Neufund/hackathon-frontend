@@ -1,10 +1,11 @@
-import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from '../actions/constants';
+import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from '../actions/constants';
 
 const initialState = {
   loading: false,
   address: null,
   addressFromWeb3: null,
   neumarkAmmount: null,
+  weiAmmount: null,
 };
 
 export default function (state = initialState, action) {
@@ -21,11 +22,12 @@ export default function (state = initialState, action) {
         ...state,
         loading: payload.loading,
       };
-    case SET_USER_NEUMARKS:
+    case SET_USER_COMITTMENT:
       return {
         ...state,
         loading: false,
         neumarkAmmount: payload.neumarkAmmount,
+        weiAmmount: payload.weiAmmount,
       };
     default:
       return state;

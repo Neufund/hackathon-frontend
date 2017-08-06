@@ -1,5 +1,6 @@
-import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from './constants';
-import loadUserNeumarksFromWeb3 from '../web3/loadUserNeumarks';
+import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from './constants';
+import { selectLockedAccountAddress } from '../reducers/icoParameters';
+import loadUserCommitmentFromWeb3 from '../web3/loadUserCommitment';
 
 export function setUserAddressAction(address, addressFromWeb3) {
   return {
@@ -20,18 +21,22 @@ export function setUserLoadingAction(loading) {
   };
 }
 
-export function setUserNeuMarksAction(neumarkAmmount) {
+export function setUserCommitmentAction(neumarkAmmount, weiAmmount) {
   return {
-    type: SET_USER_NEUMARKS,
+    type: SET_USER_COMITTMENT,
     payload: {
       neumarkAmmount,
+      weiAmmount,
     },
   };
 }
 
-export const setUserAddress = (address, fromWeb3) => async (dispatch) => {
+export const setUserAddress = (address, fromWeb3) => async (dispatch, getState) => {
   dispatch(setUserAddressAction(address, fromWeb3));
   dispatch(setUserLoadingAction(true));
-  const neumarks = await loadUserNeumarksFromWeb3(address);
-  dispatch(setUserNeuMarksAction(neumarks));
+  const { neumarkAmmount, weiAmmount } = await loadUserCommitmentFromWeb3(
+    address,
+    selectLockedAccountAddress(getState().icoParameters)
+  );
+  dispatch(setUserCommitmentAction(neumarkAmmount, weiAmmount));
 };

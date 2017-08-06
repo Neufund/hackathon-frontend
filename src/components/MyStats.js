@@ -8,13 +8,13 @@ import './MyStats.scss';
 import getAccount from '../web3/getAccount';
 import { setUserAddress } from '../actions/myStatsActions';
 
-const MyStatsComponent = ({ address, loading, neumarkAmmount, onRescanTouchTap }) => (
+const MyStatsComponent = ({ address, loading, neumarkAmmount, ethAmmount, onRescanTouchTap }) => (
   <div className="my-stats">
     {address ?
       <h3>Hello, you provided us with following eth address: {address}</h3>
       :
       <div>
-        <h3>We weren&pos;t able to automatically obtain your ETH address.</h3>
+        <h3>We were not able to automatically obtain your ETH address.</h3>
         <p>You can unlock your metamask, attach ledger etc and we can try again</p>
         <RaisedButton
           label="Rescan"
@@ -28,27 +28,38 @@ const MyStatsComponent = ({ address, loading, neumarkAmmount, onRescanTouchTap }
       <div className="spinner">
         <CircularProgress />
         <div className="caption">Obtaining data from smartcontract!</div>
-      </div>}
-    {neumarkAmmount &&
-    <p className="neumarks">Currently you own <b>{neumarkAmmount}</b> NeuMarks</p>}
+      </div>
+    }
+
+    {ethAmmount !== null &&
+    <p className="neumarks">You commited <b>{ethAmmount}</b> ETH</p>
+    }
+
+    {neumarkAmmount !== null &&
+    <p className="neumarks">Currently you own <b>{neumarkAmmount}</b> NeuMarks</p>
+    }
+
   </div>);
 
 MyStatsComponent.propTypes = {
   address: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   neumarkAmmount: PropTypes.number,
+  ethAmmount: PropTypes.number,
   onRescanTouchTap: PropTypes.func.isRequired,
 };
 
 MyStatsComponent.defaultProps = {
   address: null,
   neumarkAmmount: null,
+  ethAmmount: null,
 };
 
 const MapStateToProps = state => ({
   address: state.myStats.address,
   loading: state.myStats.loading,
   neumarkAmmount: state.myStats.neumarkAmmount,
+  ethAmmount: state.myStats.weiAmmount === null ? null : state.myStats.weiAmmount / (10 ** 18),
 });
 
 const MapDispatchToProps = dispatch => ({
