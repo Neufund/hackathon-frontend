@@ -8,7 +8,7 @@ import './Commit.scss';
 
 const CommitComponent = ({ weCanSendTransaction }) => (
   <div className="commit">
-    <h1>Hello, Its great that you are interested in committing in our ICBM!</h1>
+    <h1>Hello, Its great that you are interested in committing in our ICO!</h1>
     {weCanSendTransaction ?
       <CommitWeb3 />
       :

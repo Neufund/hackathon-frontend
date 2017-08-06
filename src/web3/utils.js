@@ -1,4 +1,5 @@
 import moment from 'moment';
+import web3 from './web3Provider';
 
 export function asMomentDate(bignum) {
   const asInt = bignum.toNumber();
@@ -8,4 +9,8 @@ export function asMomentDate(bignum) {
 
 export function asNumber(bignum) {
   return bignum.toNumber();
+}
+
+export function asEtherNumber(bignum) {
+  return web3.fromWei(bignum, 'ether').toNumber();
 }

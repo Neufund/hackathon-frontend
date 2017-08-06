@@ -1,6 +1,6 @@
 import invariant from 'invariant';
 import { LockedAccount, Neumark } from './contracts';
-import { asNumber } from './utils';
+import { asNumber, asEtherNumber } from './utils';
 
 export default async function loadIcoStats(lockedAccountAddress, neumarkAddress) {
   invariant(lockedAccountAddress, 'Specify adddress!');
@@ -11,7 +11,7 @@ export default async function loadIcoStats(lockedAccountAddress, neumarkAddress)
 
   const [totalInvestors, totalLockedAmount, neumarkSupply] = await Promise.all([
     lockedAccount.totalInvestorsAsync().then(asNumber),
-    lockedAccount.totalLockedAmountAsync().then(asNumber),
+    lockedAccount.totalLockedAmountAsync().then(asEtherNumber),
     neumark.totalSupplyAsync().then(asNumber),
   ]);
 

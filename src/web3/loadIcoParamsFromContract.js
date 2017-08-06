@@ -1,17 +1,26 @@
 import invariant from 'invariant';
 import { Crowdsale } from './contracts';
-import { asMomentDate } from './utils';
+import { asEtherNumber, asMomentDate } from './utils';
 
 export default async function loadIcoParamsFromContract(address) {
   invariant(address, 'Specify adddress!');
 
   const icoContract = Crowdsale(address);
 
-  const [startDate, endDate, lockedAccountAddress, neumarkTokenAddress] = await Promise.all([
+  const [
+    startDate,
+    endDate,
+    lockedAccountAddress,
+    neumarkTokenAddress,
+    minCap,
+    maxCap,
+  ] = await Promise.all([
     icoContract.startDateAsync().then(asMomentDate),
     icoContract.endDateAsync().then(asMomentDate),
     icoContract.lockedAccountAsync(),
     icoContract.neumarkTokenAsync(),
+    icoContract.minCapAsync().then(asEtherNumber),
+    icoContract.maxCapAsync().then(asEtherNumber),
   ]);
 
   return {
@@ -19,5 +28,7 @@ export default async function loadIcoParamsFromContract(address) {
     endDate: endDate.toISOString(),
     lockedAccountAddress,
     neumarkTokenAddress,
+    minCap,
+    maxCap,
   };
 }
