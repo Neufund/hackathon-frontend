@@ -2,7 +2,7 @@ import moment from 'moment';
 import invariant from 'invariant';
 
 import config from '../config';
-import { LOAD_ICO_PARAMS, ICO_PHASES } from '../actions/constants';
+import { LOAD_ICO_PARAMS, ICO_PHASES, NEW_PHASE_ACTION } from '../actions/constants';
 import { checkPhase } from '../actions/checkPhase';
 
 const initialState = {
@@ -29,6 +29,11 @@ export default function (state = initialState, action) {
         neumarkTokenAddress: payload.neumarkTokenAddress,
         minCap: payload.minCap,
         maxCap: payload.maxCap,
+      };
+    case NEW_PHASE_ACTION:
+      return {
+        ...state,
+        icoPhase: payload,
       };
     default:
       return state;
