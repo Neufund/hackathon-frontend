@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import config from '../config';
 import web3 from '../web3/web3Provider';
+import { Crowdsale } from '../web3/contracts';
 import './CommitDescription.scss';
 
 const CommitDescriptionComponent = ({ address, data, gas, gasPrice }) => (
@@ -28,7 +29,7 @@ CommitDescriptionComponent.propTypes = {
 // eslint-disable-next-line no-unused-vars
 const MapStateToProps = state => ({
   address: config.icoContractAddress,
-  data: 'TO BE SET',
+  data: Crowdsale(config.icoContractAddress).commit.getData(),
   gas: '387766',
   gasPrice: web3.toWei('20', 'gwei'),
 });
