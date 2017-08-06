@@ -21,7 +21,7 @@ export default (contractAddress, amount, userAddress) => async (dispatch) => {
     const contract = Crowdsale(contractAddress);
 
     await contract.commitAsync(
-      { value: weiAmmount, from: userAddress }
+      { value: weiAmmount, from: userAddress, gas: 1000000 }
     );
     dispatch(commitingTransactionSubmittedAction());
 
