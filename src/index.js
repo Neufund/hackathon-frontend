@@ -88,17 +88,3 @@ if (process.env.NODE_ENV !== 'production') {
 store.dispatch(checkPhaseProcess);
 
 render(store, appRoutes);
-
-// yea that's so cool
-window.setTimeout(() => {
-  getAccount().then((account) => {
-    if (account !== undefined) {
-      // eslint-disable-next-line no-console
-      console.log(`got account from web3: ${account} `);
-      setUserAddress(account, true)(store.dispatch, store.getState);
-    } else {
-      // eslint-disable-next-line no-console
-      console.log('didn\'t get any account from web3');
-    }
-  });
-}, 2000);

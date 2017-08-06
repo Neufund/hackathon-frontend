@@ -8,45 +8,54 @@ import './MyStats.scss';
 import getAccount from '../web3/getAccount';
 import { setUserAddress } from '../actions/myStatsActions';
 
-const MyStatsComponent = ({ address, loading, neumarkAmmount, ethAmmount, onRescanTouchTap }) => (
-  <div className="my-stats">
-    {address ?
-      <h3>Hello, you provided us with following eth address: {address}</h3>
-      :
-      <div>
-        <h3>We were not able to automatically obtain your ETH address.</h3>
-        <p>You can unlock your metamask, attach ledger etc and we can try again</p>
-        <RaisedButton
-          label="Rescan"
-          onTouchTap={onRescanTouchTap}
-        />
-        <p>Or you can pass it into following field</p>
-        <AddressForm />
-      </div>
-    }
-    {loading &&
-      <div className="spinner">
-        <CircularProgress />
-        <div className="caption">Obtaining data from smartcontract!</div>
-      </div>
-    }
+class MyStatsComponent extends React.Component {
+  componentDidMount() {
+    this.props.refreshLoggedUser();
+  }
 
-    {ethAmmount !== null &&
-    <p className="neumarks">You commited <b>{ethAmmount}</b> ETH</p>
-    }
+  render() {
+    const { address, loading, neumarkAmmount, ethAmmount, refreshLoggedUser } = this.props;
+    return (
+      <div className="my-stats">
+        {address ?
+          <h3>Hello, you provided us with following eth address: {address}</h3>
+          :
+          <div>
+            <h3>We were not able to automatically obtain your ETH address.</h3>
+            <p>You can unlock your metamask, attach ledger etc and we can try again</p>
+            <RaisedButton
+              label="Rescan"
+              onTouchTap={refreshLoggedUser}
+            />
+            <p>Or you can pass it into following field</p>
+            <AddressForm />
+          </div>
+        }
+        {loading &&
+        <div className="spinner">
+          <CircularProgress />
+          <div className="caption">Obtaining data from smartcontract!</div>
+        </div>
+        }
 
-    {neumarkAmmount !== null &&
-    <p className="neumarks">Currently you own <b>{neumarkAmmount}</b> NeuMarks</p>
-    }
+        {ethAmmount !== null &&
+        <p className="neumarks">You commited <b>{ethAmmount}</b> ETH</p>
+        }
 
-  </div>);
+        {neumarkAmmount !== null &&
+        <p className="neumarks">Currently you own <b>{neumarkAmmount}</b> NeuMarks</p>
+        }
+      </div>);
+  }
+}
+
 
 MyStatsComponent.propTypes = {
   address: PropTypes.string,
   loading: PropTypes.bool.isRequired,
   neumarkAmmount: PropTypes.number,
   ethAmmount: PropTypes.number,
-  onRescanTouchTap: PropTypes.func.isRequired,
+  refreshLoggedUser: PropTypes.func.isRequired,
 };
 
 MyStatsComponent.defaultProps = {
@@ -63,7 +72,7 @@ const MapStateToProps = state => ({
 });
 
 const MapDispatchToProps = dispatch => ({
-  onRescanTouchTap: () => {
+  refreshLoggedUser: () => {
     getAccount().then((account) => {
       if (account !== undefined) {
         // eslint-disable-next-line no-console
