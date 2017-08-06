@@ -13,8 +13,6 @@ import appRoutes from './routes';
 import { deepfreeze } from './utils';
 import checkPhaseProcess from './actions/checkPhase';
 import App from './components/App';
-import getAccount from './web3/getAccount';
-import { setUserAddress } from './actions/myStatsActions';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
