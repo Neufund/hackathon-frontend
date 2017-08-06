@@ -6,6 +6,7 @@ import { loadIcoStats } from '../actions/loadIcoStats';
 import './DuringIco.css';
 import config from '../config';
 import { selectEndDate } from '../reducers/icoParameters';
+import TokenChart from '../components/TokenChart';
 
 class AfterIco extends React.Component {
 
@@ -53,6 +54,7 @@ class AfterIco extends React.Component {
         <div className="actions">
           <button>etherscan.io</button>
         </div>
+        <TokenChart id={1} />
       </div>
     );
   }
