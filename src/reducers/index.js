@@ -4,6 +4,7 @@ import { reducer as form } from 'redux-form';
 import icoParameters from './icoParameters';
 import icoState from './icoState';
 import myStats from './myStats';
+import commit from './commit';
 
 export default combineReducers({
   router,
@@ -11,4 +12,5 @@ export default combineReducers({
   icoState,
   myStats,
   form,
+  commit,
 });

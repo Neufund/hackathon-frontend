@@ -27,6 +27,6 @@ AddressFormComponent.propTypes = {
 export default reduxForm({
   form: 'addresform',
   onSubmit: (values, dispatch) => {
-    dispatch(setUserAddress(values.address));
+    dispatch(setUserAddress(values.address, false));
   },
 })(AddressFormComponent);

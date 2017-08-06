@@ -9,18 +9,26 @@
   background: #275263;
   width: 100%;
   border-radius: 20px;
+  height: 20px;
 }
 
 .progress-bar-container > .progress-bar-background > .progress-bar-line {
   background: #ffe917;
+  position: absolute;
   display: block;
   height:20px;
   border-radius: 20px;
 }
 
-.progress-bar-container > .progress-bar-background > .progress-bar-line > .percentage {
+.min-cap-progress-line {
+  background: rgb(27, 74, 93) !important;
+  position:absolute !important;;
+  top: 0 !important;
+}
+
+.progress-bar-container > .progress-bar-background > .progress-bar-line > .max-cap  {
   position: absolute;
-  right: 0;
+  right: -195px;
   top: 20px;
   font-weight: lighter;
   font-size: 14px;

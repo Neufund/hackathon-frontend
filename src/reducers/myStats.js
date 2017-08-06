@@ -3,6 +3,7 @@ import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_NEUMARKS } from '../action
 const initialState = {
   loading: false,
   address: null,
+  addressFromWeb3: null,
   neumarkAmmount: null,
 };
 
@@ -13,6 +14,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         address: payload.address,
+        addressFromWeb3: payload.addressFromWeb3,
       };
     case SET_USER_LOADING:
       return {

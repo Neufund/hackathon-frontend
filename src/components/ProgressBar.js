@@ -2,23 +2,33 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ProgressBar.css';
 
-const ProgressBar = ({ percentage }) => {
-  const style = {
-    width: `${percentage}%`,
+const ProgressBar = ({ raised, maxCap, minCap }) => {
+  const raisedPercentage = (raised / maxCap) * 100;
+  const minCapPercentage = (minCap / maxCap) * 100;
+
+  const raisedWidth = {
+    width: `${raisedPercentage}%`,
+  };
+
+  const minCapWidth = {
+    width: `${minCapPercentage}%`,
   };
 
   return (
     <div className="progress-bar-container">
       <div className="progress-bar-background">
-        <dv className="progress-bar-line" style={style}>
-          <p className="percentage">{ percentage }%</p>
-        </dv>
+        <div className="progress-bar-line min-cap-progress-line" style={minCapWidth}>
+          <p className="max-cap">{ maxCap } ETH</p>
+        </div>
+        <div className="progress-bar-line" style={raisedWidth} />
       </div>
     </div>
   );
 };
 
 ProgressBar.propTypes = {
-  percentage: PropTypes.number.isRequired,
+  raised: PropTypes.number.isRequired,
+  maxCap: PropTypes.number.isRequired,
+  minCap: PropTypes.number.isRequired,
 };
 export default ProgressBar;

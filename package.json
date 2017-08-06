@@ -84,7 +84,7 @@
     "lint": "yarn eslint ; yarn sass-lint",
     "testrpcs": "testrpc --deterministic",
     "build": "babel-node node_modules/.bin/webpack",
-    "serve": "babel-node node_modules/.bin/webpack-dev-server --https --colors --progress --history-api-fallback",
+    "serve": "babel-node node_modules/.bin/webpack-dev-server  --colors --progress --history-api-fallback",
     "precommit": "yarn sass-lint && yarn eslint"
   },
   "description": "Node.js starter project",

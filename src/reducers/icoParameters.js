@@ -10,6 +10,8 @@ const initialState = {
   address: config.icoContractAddress,
   startDate: null,
   endDate: null,
+  minCap: 0,
+  maxCap: 0,
   icoPhase: ICO_PHASES.UNKNOWN,
 };
 
@@ -23,6 +25,10 @@ export default function (state = initialState, action) {
         startDate: payload.startDate,
         endDate: payload.endDate,
         icoPhase: checkPhase(payload),
+        lockedAccountAddress: payload.lockedAccountAddress,
+        neumarkTokenAddress: payload.neumarkTokenAddress,
+        minCap: payload.minCap,
+        maxCap: payload.maxCap,
       };
     default:
       return state;
@@ -32,6 +38,14 @@ export default function (state = initialState, action) {
 
 export function selectAddress(state) {
   return state.address;
+}
+
+export function selectLockedAccountAddress(state) {
+  return state.lockedAccountAddress;
+}
+
+export function selectNeumarkTokenAddress(state) {
+  return state.neumarkTokenAddress;
 }
 
 export function selectStartDate(state) {
