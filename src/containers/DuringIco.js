@@ -10,6 +10,7 @@ import ProgressBar from '../components/ProgressBar';
 import './DuringIco.css';
 import config from '../config';
 import { selectEndDate } from '../reducers/icoParameters';
+import TokenChart from '../components/TokenChart';
 
 
 class DuringIco extends React.Component {
@@ -74,6 +75,7 @@ class DuringIco extends React.Component {
           <button className="active" onClick={onCommitClick}>Commit</button>
           <button>etherscan.io</button>
         </div>
+        <TokenChart id={1} />
       </div>
     );
   }

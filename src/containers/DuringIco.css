@@ -1,6 +1,6 @@
 .ico-header{
   text-align: center;
-  height: 500px;
+  min-height: 500px;
   color: white;
 }
 .money-container{
