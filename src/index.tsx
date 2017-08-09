@@ -22,10 +22,6 @@ const render = (store: any, routes: any) => { //@todo state
         <App>
           <RouterHistoryContainer
             routes={routes}
-            renderNotFound={() => {
-              store.dispatch(routeTo('/not-found'));
-              return <NotFound />;
-            }}
           />
         </App>
       </Provider>
