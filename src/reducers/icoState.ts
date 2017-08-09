@@ -1,6 +1,14 @@
 import { LOAD_ICO_STATS } from '../actions/constants';
 
-const initialState = {
+export interface IcoStateState {
+  loading: boolean;
+  raised: number;
+  investorNumber: number;
+  neuMarkAmount: number;
+  neuMarkToEtherRatio: number;
+}
+
+const initialState: IcoStateState = {
   loading: true,
   raised: null,
   investorNumber: null,
@@ -8,7 +16,7 @@ const initialState = {
   neuMarkToEtherRatio: null,
 };
 
-export default function (state = initialState, action) {
+export default function (state = initialState, action: any): IcoStateState {
   const { type, payload } = action;
   switch (type) {
     case LOAD_ICO_STATS:

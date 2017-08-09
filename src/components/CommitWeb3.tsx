@@ -62,7 +62,7 @@ const CommitWeb3Component = ({ userAddress, handleSubmit, commit }: CommitWeb3Co
 };
 
 interface FormInterface {
-  amount: string;
+  amount: number;
 }
 
 const CommitWeb3Form = reduxForm<FormInterface, CommitWeb3ComponentProps>({

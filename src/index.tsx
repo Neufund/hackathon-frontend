@@ -7,18 +7,14 @@ import { createRouterMiddleware, RouterHistoryContainer, routeTo } from 'redux-r
 import { composeWithDevTools } from 'redux-devtools-extension';
 import thunkMiddleware from 'redux-thunk';
 import reduxLogger from 'redux-logger';
-import reducer from './reducers';
+import reducer from './reducers/index';
 import appRoutes from './routes';
-import { deepfreeze } from './utils';
 import checkPhaseProcess from './actions/checkPhase';
 import App from './components/App';
 
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-
 const root = document.getElementById('react-root');
 
-const render = (store, routes) => {
+const render = (store: any, routes: any) => { //@todo state
   const NotFound = routes['/not-found'];
   ReactDOM.render(
     <MuiThemeProvider>
@@ -38,7 +34,7 @@ const render = (store, routes) => {
   );
 };
 
-const enhancers = routes =>
+const enhancers = (routes: any) =>
   composeWithDevTools(
     applyMiddleware(thunkMiddleware, createRouterMiddleware({ routes }), reduxLogger)
   );
@@ -55,21 +51,16 @@ if (process.env.NODE_ENV !== 'production') {
   const ReactDebugTool = require('react-dom/lib/ReactDebugTool');
   ReactDebugTool.beginProfiling();
 
-  // Deep freeze all reducer state
-  // (this prevents accidental state modification)
-  const reducerWrap = next => (...args) => deepfreeze(next(...args));
-  store.replaceReducer(reducerWrap(reducer));
-
   // Enable Webpack hot module replacement
-  if (module.hot) {
+  if ((module as any).hot) {
     // Replace reducers
-    module.hot.accept('./reducers', () => {
+    (module as any).hot.accept('./reducers', () => {
       const newReducer = require('./reducers').default;
-      store.replaceReducer(reducerWrap(newReducer));
+      store.replaceReducer(newReducer);
     });
 
     // Replace routes and components
-    module.hot.accept('./routes', () => {
+    (module as any).hot.accept('./routes', () => {
       const newAppRoutes = require('./routes').default;
       // NOTE: We don't update the store middleWare,
       //       if you change routes you need to refresh.

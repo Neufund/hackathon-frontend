@@ -1,12 +1,18 @@
 import { COMMITING_STARTED, COMMITING_TRANSACTION_SUBMITTED, COMMITING_DONE, COMMITING_ERROR } from '../actions/constants';
 
-const initialState = {
+export interface CommitState {
+  commiting: boolean,
+  transactionSubmitted: boolean,
+  error: any,
+}
+
+const initialState: CommitState = {
   commiting: false,
   transactionSubmitted: false,
   error: null,
 };
 
-export default function (state = initialState, action) {
+export default function (state = initialState, action: any): CommitState {
   const { type, payload } = action;
 
   switch (type) {

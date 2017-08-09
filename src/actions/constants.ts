@@ -2,11 +2,11 @@ export const LOAD_ICO_PARAMS = 'LOAD_ICO_PARAMS';
 
 export const NEW_PHASE_ACTION = 'NEW_PHASE';
 
-export const ICO_PHASES = {
-  BEFORE_ICO: 'BEFORE_ICO',
-  DURING_ICO: 'DURING_ICO',
-  AFTER_ICO: 'AFTER_ICO',
-  UNKNOWN: 'UNKNOWN',
+export enum IcoPhase {
+    BEFORE_ICO = "BEFORE_ICO",
+    DURING_ICO = "DURING_ICO",
+    AFTER_ICO = "AFTER_ICO",
+    UNKNOWN = "UNKNOWN",
 };
 
 export const LOAD_ICO_STATS = 'LOAD_ICO_STATS';

@@ -1,6 +1,8 @@
 import sendETH from '../web3/sendETH';
 import { selectAddress } from '../reducers/icoParameters';
 import { COMMITING_STARTED, COMMITING_TRANSACTION_SUBMITTED, COMMITING_DONE, COMMITING_ERROR } from './constants';
+import { AppState } from "../reducers/index";
+import { ThunkAction } from "redux-thunk";
 
 export function commitingStartedAction() {
   return {
@@ -21,15 +23,14 @@ export function commitingDoneAction() {
 }
 
 
-export function commitingError(e) {
+export function commitingError(e: any) {
   return {
     type: COMMITING_ERROR,
     payload: e,
   };
 }
 
-// eslint-disable-next-line no-unused-vars,import/prefer-default-export
-export const commitETH = (ammount, userAddress) => async (dispatch, getState) => {
+export const commitETH = (ammount: number, userAddress: string): ThunkAction<{}, AppState, {}> => async (dispatch, getState) => {
   const state = getState();
   const address = selectAddress(state.icoParameters);
 

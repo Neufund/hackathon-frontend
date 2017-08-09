@@ -8,17 +8,10 @@ import { loadIcoParams } from '../actions/loadIcoParams';
 import BeforeIco from '../containers/BeforeIco';
 import DuringIco from './DuringIco';
 import AfterIco from './AfterIco';
-import { ICO_PHASES } from '../actions/constants';
+import { IcoPhase  } from '../actions/constants';
 import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
 import Jumbotron from '../components/Jumbotron';
 import MyStats from '../components/MyStats';
-
-enum IcoPhase {
-    BEFORE_ICO = "BEFORE_ICO",
-    DURING_ICO = "DURING_ICO",
-    AFTER_ICO = "AFTER_ICO",
-    UNKNOWN = "UNKNOWN",
-};
 
 interface IcoProps {
   loadIcoParams: any; // @todo fix
@@ -39,11 +32,11 @@ export class IcoComponent extends React.Component<IcoProps> {
     }
 
     switch (icoPhase) {
-      case ICO_PHASES.BEFORE_ICO:
+      case IcoPhase.BEFORE_ICO:
         return <BeforeIco />;
-      case ICO_PHASES.DURING_ICO:
+      case IcoPhase.DURING_ICO:
         return <DuringIco />;
-      case ICO_PHASES.AFTER_ICO:
+      case IcoPhase.AFTER_ICO:
         return <AfterIco />;
       default:
         throw new Error('Unsupported ICO Phase');
@@ -59,7 +52,7 @@ export class IcoComponent extends React.Component<IcoProps> {
           {this.renderBody()}
         </Jumbotron>
 
-        { (icoPhase === ICO_PHASES.DURING_ICO || icoPhase === ICO_PHASES.AFTER_ICO) && <MyStats />}
+        { (icoPhase === IcoPhase.DURING_ICO || icoPhase === IcoPhase.AFTER_ICO) && <MyStats />}
       </div>
     );
   }

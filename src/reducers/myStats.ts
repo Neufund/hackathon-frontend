@@ -1,6 +1,14 @@
 import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from '../actions/constants';
 
-const initialState = {
+export interface MyStatsState {
+  loading: boolean;
+  address: string;
+  addressFromWeb3: string;
+  neumarkAmmount: number;
+  weiAmmount: number;
+}
+
+const initialState: MyStatsState = {
   loading: false,
   address: null,
   addressFromWeb3: null,
@@ -8,7 +16,7 @@ const initialState = {
   weiAmmount: null,
 };
 
-export default function (state = initialState, action) {
+export default function (state = initialState, action: any): MyStatsState {
   const { type, payload } = action;
   switch (type) {
     case SET_USER_ADDRESS:

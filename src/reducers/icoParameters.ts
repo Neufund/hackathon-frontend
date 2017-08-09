@@ -1,21 +1,34 @@
 import * as moment from 'moment';
-import * as invariant from 'invariant';
 
 import config from '../config';
-import { LOAD_ICO_PARAMS, ICO_PHASES, NEW_PHASE_ACTION } from '../actions/constants';
+import { LOAD_ICO_PARAMS, IcoPhase, NEW_PHASE_ACTION } from '../actions/constants';
 import { checkPhase } from '../actions/checkPhase';
 
-const initialState = {
+export interface IcoParametersState {
+  loading: boolean;
+  address: string;
+  lockedAccountAddress: string;
+  neumarkTokenAddress: string;
+  startDate: string;
+  endDate: string;
+  minCap: number;
+  maxCap: number;
+  icoPhase: IcoPhase;
+}
+
+const initialState: IcoParametersState = {
   loading: true,
   address: config.icoContractAddress,
+  lockedAccountAddress: null,
+  neumarkTokenAddress: null,
   startDate: null,
   endDate: null,
   minCap: 0,
   maxCap: 0,
-  icoPhase: ICO_PHASES.UNKNOWN,
+  icoPhase: IcoPhase.UNKNOWN,
 };
 
-export default function (state = initialState, action) {
+export default function (state = initialState, action: any): IcoParametersState {
   const { type, payload } = action;
   switch (type) {
     case LOAD_ICO_PARAMS:
@@ -41,34 +54,30 @@ export default function (state = initialState, action) {
 }
 
 
-export function selectAddress(state) {
+export function selectAddress(state: IcoParametersState) {
   return state.address;
 }
 
-export function selectLockedAccountAddress(state) {
+export function selectLockedAccountAddress(state: IcoParametersState) {
   return state.lockedAccountAddress;
 }
 
-export function selectNeumarkTokenAddress(state) {
+export function selectNeumarkTokenAddress(state: IcoParametersState) {
   return state.neumarkTokenAddress;
 }
 
-export function selectStartDate(state) {
-  invariant(state.startDate, 'startDate is not defined!');
-
+export function selectStartDate(state: IcoParametersState ) {
   return moment(state.startDate);
 }
 
-export function selectEndDate(state) {
-  invariant(state.endDate, 'endDate is not defined!');
-
+export function selectEndDate(state: IcoParametersState) {
   return moment(state.endDate);
 }
 
-export function selectIcoPhase(state) {
+export function selectIcoPhase(state: IcoParametersState) {
   return state.icoPhase;
 }
 
-export function selectLoadingState(state) {
+export function selectLoadingState(state: IcoParametersState) {
   return state.loading;
 }
