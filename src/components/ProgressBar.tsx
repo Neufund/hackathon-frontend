@@ -1,8 +1,13 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import './ProgressBar.css';
 
-const ProgressBar = ({ raised, maxCap, minCap }) => {
+interface ProgressBarProps {
+  raised: number;
+  maxCap: number;
+  minCap: number;
+}
+
+const ProgressBar = ({ raised, maxCap, minCap }: ProgressBarProps) => {
   const raisedPercentage = (raised / maxCap) * 100;
   const minCapPercentage = (minCap / maxCap) * 100;
 
@@ -26,9 +31,4 @@ const ProgressBar = ({ raised, maxCap, minCap }) => {
   );
 };
 
-ProgressBar.propTypes = {
-  raised: PropTypes.number.isRequired,
-  maxCap: PropTypes.number.isRequired,
-  minCap: PropTypes.number.isRequired,
-};
 export default ProgressBar;

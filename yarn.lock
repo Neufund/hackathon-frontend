@@ -10,9 +10,22 @@
   version "3.5.8"
   resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.8.tgz#242a83379f06c90f96acf6d1aeab3af6faebdb98"
 
+"@types/material-ui@^0.17.21":
+  version "0.17.21"
+  resolved "https://registry.yarnpkg.com/@types/material-ui/-/material-ui-0.17.21.tgz#86e73996021eec12bd8379a11aa3e013f371e589"
+  dependencies:
+    "@types/react" "*"
+    "@types/react-addons-linked-state-mixin" "*"
+
 "@types/node@*":
   version "8.0.20"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.20.tgz#65c7375255c24b184c215a5d0b63247c32f01c91"
+
+"@types/react-addons-linked-state-mixin@*":
+  version "0.14.18"
+  resolved "https://registry.yarnpkg.com/@types/react-addons-linked-state-mixin/-/react-addons-linked-state-mixin-0.14.18.tgz#6977ae59e19aa0ce3a5d7a9e057961aaf1afe959"
+  dependencies:
+    "@types/react" "*"
 
 "@types/react-dom@^15.5.2":
   version "15.5.2"
@@ -24,6 +37,13 @@
 "@types/react@*", "@types/react@^16.0.1":
   version "16.0.1"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.0.1.tgz#c84c984bfa2c01e585d51e376df0ec7e13fadede"
+
+"@types/redux-form@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@types/redux-form/-/redux-form-7.0.2.tgz#55f590b6d4ac78a4f543620de7d981a7f2444775"
+  dependencies:
+    "@types/react" "*"
+    redux "^3.6.0"
 
 abab@^1.0.3:
   version "1.0.3"

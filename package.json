@@ -55,6 +55,8 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "@types/material-ui": "^0.17.21",
+    "@types/redux-form": "^7.0.2",
     "bluebird": "^3.5.0",
     "bn": "^1.0.1",
     "ethereumjs-util": "^5.1.1",

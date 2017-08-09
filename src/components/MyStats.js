@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
-import AddressForm from './AddressForm';
+import AddressForm from './AddressForm.tsx';
 import './MyStats.scss';
 import getAccount from '../web3/getAccount.ts';
 import { setUserAddress } from '../actions/myStatsActions';

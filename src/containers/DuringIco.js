@@ -6,7 +6,7 @@ import { momentObj } from 'react-moment-proptypes';
 import { routeTo } from 'redux-router-kit';
 import { loadIcoStats } from '../actions/loadIcoStats';
 import { Countdown } from '../components/Countdown';
-import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../components/ProgressBar.tsx';
 import './DuringIco.css';
 import config from '../config';
 import { selectEndDate } from '../reducers/icoParameters';
