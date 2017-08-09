@@ -6,6 +6,7 @@ import RaisedButton from "material-ui/RaisedButton";
 import CircularProgress from "material-ui/CircularProgress";
 import { commitETH } from "../actions/commitActions";
 import "./CommitWeb3.scss";
+import { AppState } from "../reducers/index";
 
 interface Commit {
   error: any;
@@ -60,8 +61,7 @@ const CommitWeb3Form = reduxForm<FormInterface, CommitWeb3ComponentProps>({
   },
 })(CommitWeb3Component);
 
-const mapStateToProps = (state: any) => ({
-  //@todo fix state
+const mapStateToProps = (state: AppState) => ({
   userAddress: state.myStats.address,
   commit: state.commit,
 });

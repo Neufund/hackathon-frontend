@@ -3,7 +3,7 @@ import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from "../acti
 export interface MyStatsState {
   loading: boolean;
   address: string;
-  addressFromWeb3: string;
+  addressFromWeb3: boolean;
   neumarkAmmount: number;
   weiAmmount: number;
 }

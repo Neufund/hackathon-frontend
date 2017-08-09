@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import CommitDescription from "../components/CommitDescription";
 import CommitWeb3 from "../components/CommitWeb3";
 import "./Commit.scss";
+import { AppState } from "../reducers/index";
 
 interface CommitComponentProps {
   weCanSendTransaction: boolean;
@@ -15,8 +16,7 @@ const CommitComponent: React.SFC<CommitComponentProps> = ({ weCanSendTransaction
     {weCanSendTransaction ? <CommitWeb3 /> : <CommitDescription />}
   </div>;
 
-const mapStateToProps = (state: any) => ({
-  // @todo fix state
+const mapStateToProps = (state: AppState) => ({
   weCanSendTransaction: state.myStats.addressFromWeb3 === true,
 });
 
