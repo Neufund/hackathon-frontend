@@ -1,5 +1,5 @@
-import Ico from './containers/Ico';
-import Commit from './containers/Commit';
+import Ico from './containers/Ico.tsx';
+import Commit from './containers/Commit.tsx';
 // import NotFound from './components/NotFound';
 
 // Routes for redux-router-kit

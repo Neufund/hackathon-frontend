@@ -1,21 +1,40 @@
 import * as React from 'react';
+import { Dispatch } from 'redux';
 import { CircularProgress } from 'material-ui';
-import * as PropTypes from 'prop-types';
+import { Moment } from 'moment'
 import { connect } from 'react-redux';
-import { momentObj } from 'react-moment-proptypes';
 import { routeTo } from 'redux-router-kit';
 import { loadIcoStats } from '../actions/loadIcoStats';
 import { Countdown } from '../components/Countdown';
-import ProgressBar from '../components/ProgressBar.tsx';
+import ProgressBar from '../components/ProgressBar';
 import './DuringIco.css';
 import config from '../config';
 import { selectEndDate } from '../reducers/icoParameters';
 import TokenChart from '../components/TokenChart';
 
+interface IcoState {
+  raised: number;
+  investorNumber: number;
+  neuMarkAmount: number;
+  neuMarkToEtherRatio: number;
+  loading: boolean;
+}
 
-class DuringIco extends React.Component {
+interface DuringIcoProps {
+  loadIcoStats: any//func.isRequired,
+  finishDate: Moment,
+  minCap: number,
+  maxCap: number,
+  icoState: IcoState
+  onCommitClick: () => void,
+}
 
-  constructor(props) {
+interface DuringIcoState {
+  interval: number;
+}
+
+class DuringIco extends React.Component<DuringIcoProps, DuringIcoState> {
+  constructor(props: DuringIcoProps) {
     super(props);
     this.state = {
       interval: null,
@@ -24,7 +43,7 @@ class DuringIco extends React.Component {
 
   componentDidMount() {
     this.props.loadIcoStats();
-    const interval = setInterval(() => {
+    const interval = window.setInterval(() => {
       this.props.loadIcoStats();
     }, config.timeToCheckIcoStatsInMilliSeconds);
 
@@ -81,27 +100,7 @@ class DuringIco extends React.Component {
   }
 }
 
-DuringIco.propTypes = {
-  loadIcoStats: PropTypes.func.isRequired,
-  finishDate: momentObj.isRequired,
-  minCap: PropTypes.number,
-  maxCap: PropTypes.number,
-  icoState: PropTypes.shape({
-    raised: PropTypes.number,
-    investorNumber: PropTypes.number,
-    neuMarkAmount: PropTypes.number,
-    neuMarkToEtherRatio: PropTypes.number,
-    loading: PropTypes.bool,
-  }).isRequired,
-  onCommitClick: PropTypes.func.isRequired,
-};
-
-DuringIco.defaultProps = {
-  minCap: null,
-  maxCap: null,
-};
-
-function mapStateToProps(state) {
+function mapStateToProps(state: any) { // @todo fix state
   return {
     icoState: state.icoState,
     minCap: state.icoParameters.minCap,
@@ -110,7 +109,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<any>) { //@todo fix state
   return {
     loadIcoStats: () => dispatch(loadIcoStats),
     onCommitClick: () => dispatch(routeTo('/commit')),

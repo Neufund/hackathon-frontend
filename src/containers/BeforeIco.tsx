@@ -1,11 +1,15 @@
 import * as React from 'react';
-import { momentObj } from 'react-moment-proptypes';
 import { connect } from 'react-redux';
+import { Moment } from 'moment';
 
 import { selectStartDate } from '../reducers/icoParameters';
 import { Countdown } from '../components/Countdown';
 
-export const BeforeIcoComponent = ({ startDate }) => (
+interface BeforeIcoComponentProps {
+  startDate: Moment;
+}
+
+export const BeforeIcoComponent: React.SFC<BeforeIcoComponentProps> = ({ startDate }) => (
   <div>
     <h1 className="center before-ico-header">Commit funds to invest in the future</h1>
 
@@ -20,11 +24,7 @@ export const BeforeIcoComponent = ({ startDate }) => (
   </div>
 );
 
-BeforeIcoComponent.propTypes = {
-  startDate: momentObj.isRequired,
-};
-
-export function mapStateToProps(state) {
+export function mapStateToProps(state: any) { // @todo state
   return {
     startDate: selectStartDate(state.icoParameters),
   };

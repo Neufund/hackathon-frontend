@@ -1,14 +1,22 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
-import AddressForm from './AddressForm.tsx';
+import AddressForm from './AddressForm';
 import './MyStats.scss';
-import getAccount from '../web3/getAccount.ts';
+import getAccount from '../web3/getAccount';
 import { setUserAddress } from '../actions/myStatsActions';
 
-class MyStatsComponent extends React.Component {
+interface MyStatsComponentProps {
+  address: string;
+  loading: boolean;
+  neumarkAmmount: number;
+  ethAmmount: number;
+  refreshLoggedUser: () => {};
+}
+
+class MyStatsComponent extends React.Component<MyStatsComponentProps> {
   componentDidMount() {
     this.props.refreshLoggedUser();
   }
@@ -49,29 +57,14 @@ class MyStatsComponent extends React.Component {
   }
 }
 
-
-MyStatsComponent.propTypes = {
-  address: PropTypes.string,
-  loading: PropTypes.bool.isRequired,
-  neumarkAmmount: PropTypes.number,
-  ethAmmount: PropTypes.number,
-  refreshLoggedUser: PropTypes.func.isRequired,
-};
-
-MyStatsComponent.defaultProps = {
-  address: null,
-  neumarkAmmount: null,
-  ethAmmount: null,
-};
-
-const MapStateToProps = state => ({
+const MapStateToProps = (state: any) => ({ // @todo fix state
   address: state.myStats.address,
   loading: state.myStats.loading,
   neumarkAmmount: state.myStats.neumarkAmmount,
   ethAmmount: state.myStats.weiAmmount === null ? null : state.myStats.weiAmmount / (10 ** 18),
 });
 
-const MapDispatchToProps = dispatch => ({
+const MapDispatchToProps = (dispatch: Dispatch<any>) => ({
   refreshLoggedUser: () => {
     getAccount().then((account) => {
       if (account !== undefined) {

@@ -1,9 +1,12 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import Chart from '../tokenChart';
 import './TokenChart.scss';
 
-class TokenChart extends React.Component {
+interface TokenChartProps {
+  id: number;
+}
+
+class TokenChart extends React.Component<TokenChartProps> {
   componentDidMount() {
     const config = {
       name: `tokenChartCanvas${this.props.id}`,
@@ -15,7 +18,7 @@ class TokenChart extends React.Component {
       circleBackground: '#fff000',
       hoverBackground: 'orange',
     };
-    const chart = new Chart(config);
+    const chart = new (Chart as any)(config);
     chart.drawChart();
   }
 
@@ -28,9 +31,5 @@ class TokenChart extends React.Component {
     );
   }
 }
-
-TokenChart.propTypes = {
-  id: PropTypes.number.isRequired,
-};
 
 export default TokenChart;

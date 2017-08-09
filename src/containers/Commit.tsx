@@ -1,12 +1,15 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import CommitDescription from '../components/CommitDescription';
 import CommitWeb3 from '../components/CommitWeb3';
 import './Commit.scss';
 
-const CommitComponent = ({ weCanSendTransaction }) => (
+interface CommitComponentProps {
+  weCanSendTransaction: boolean;
+}
+
+const CommitComponent: React.SFC<CommitComponentProps> = ({ weCanSendTransaction }) => (
   <div className="commit">
     <h1>Hello, Its great that you are interested in committing in our ICO!</h1>
     {weCanSendTransaction ?
@@ -16,11 +19,7 @@ const CommitComponent = ({ weCanSendTransaction }) => (
     }
   </div>);
 
-CommitComponent.propTypes = {
-  weCanSendTransaction: PropTypes.bool.isRequired,
-};
-
-const mapStateToProps = state => ({
+const mapStateToProps = (state: any) => ({ // @todo fix state
   weCanSendTransaction: state.myStats.addressFromWeb3 === true,
 });
 

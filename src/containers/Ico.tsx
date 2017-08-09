@@ -1,7 +1,6 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
-import * as invariant from 'invariant';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import CircularProgress from 'material-ui/CircularProgress';
 
 import './Ico.css';
@@ -14,7 +13,20 @@ import { selectIcoPhase, selectLoadingState } from '../reducers/icoParameters';
 import Jumbotron from '../components/Jumbotron';
 import MyStats from '../components/MyStats';
 
-export class AppComponent extends React.Component {
+enum IcoPhase {
+    BEFORE_ICO = "BEFORE_ICO",
+    DURING_ICO = "DURING_ICO",
+    AFTER_ICO = "AFTER_ICO",
+    UNKNOWN = "UNKNOWN",
+};
+
+interface IcoProps {
+  loadIcoParams: any; // @todo fix
+  icoPhase: IcoPhase;
+  isLoading: boolean;
+}
+
+export class IcoComponent extends React.Component<IcoProps> {
   componentDidMount() {
     this.props.loadIcoParams();
   }
@@ -34,7 +46,7 @@ export class AppComponent extends React.Component {
       case ICO_PHASES.AFTER_ICO:
         return <AfterIco />;
       default:
-        return invariant(false, 'Unsupported ICO Phase');
+        throw new Error('Unsupported ICO Phase');
     }
   }
 
@@ -53,24 +65,18 @@ export class AppComponent extends React.Component {
   }
 }
 
-AppComponent.propTypes = {
-  loadIcoParams: PropTypes.func.isRequired,
-  icoPhase: PropTypes.oneOf(['BEFORE_ICO', 'DURING_ICO', 'AFTER_ICO', 'UNKNOWN']).isRequired,
-  isLoading: PropTypes.bool.isRequired,
-};
-
-function mapStateToProps(state) {
+function mapStateToProps(state: any) { // @todo @state
   return {
     icoPhase: selectIcoPhase(state.icoParameters),
     isLoading: selectLoadingState(state.icoParameters),
   };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch: Dispatch<any>) {  // @todo state
   return {
     loadIcoParams: () => dispatch(loadIcoParams),
 
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AppComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(IcoComponent);

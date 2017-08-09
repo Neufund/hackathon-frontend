@@ -1,14 +1,27 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
-import { TextField } from 'redux-form-material-ui';
+import { TextField as MaterialTextField, TextFieldProps as MaterialTextFieldProps } from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { commitETH } from '../actions/commitActions';
 import './CommitWeb3.scss';
 
-const CommitWeb3Component = ({ userAddress, handleSubmit, submit, commit }) => {
+interface Commit {
+    error: any;
+    commiting: boolean;
+    transactionSubmitted: boolean;
+}
+
+interface CommitWeb3ComponentProps {
+  userAddress: string;
+  handleSubmit: () => {};
+  commit: Commit;
+}
+
+const TextField = Field as { new (): Field<MaterialTextFieldProps>};
+
+const CommitWeb3Component = ({ userAddress, handleSubmit, commit }: CommitWeb3ComponentProps) => {
   if (commit.commiting) {
     return (
       <div>
@@ -33,14 +46,14 @@ const CommitWeb3Component = ({ userAddress, handleSubmit, submit, commit }) => {
         Your address: {userAddress}
       </p>
       <form className="addressForm" onSubmit={handleSubmit}>
-        <Field
+        <TextField
           name="amount"
-          component={TextField}
+          component={MaterialTextField}
           floatingLabelText="How much ETH you want to commit"
         />
         <RaisedButton
           label="Send"
-          onTouchTap={submit}
+          onTouchTap={handleSubmit}
           style={{ marginLeft: '20px' }}
         />
       </form>
@@ -48,25 +61,18 @@ const CommitWeb3Component = ({ userAddress, handleSubmit, submit, commit }) => {
   );
 };
 
-CommitWeb3Component.propTypes = {
-  userAddress: PropTypes.string.isRequired,
-  handleSubmit: PropTypes.func.isRequired,
-  submit: PropTypes.func.isRequired,
-  commit: PropTypes.shape({
-    error: PropTypes.shape({}),
-    commiting: PropTypes.bool,
-    transactionSubmitted: PropTypes.bool,
-  }).isRequired,
-};
+interface FormInterface {
+  amount: string;
+}
 
-const CommitWeb3Form = reduxForm({
+const CommitWeb3Form = reduxForm<FormInterface, CommitWeb3ComponentProps>({
   form: 'commitform',
   onSubmit: (values, dispatch, props) => {
     dispatch(commitETH(values.amount, props.userAddress));
   },
 })(CommitWeb3Component);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state :any) => ({ //@todo fix state
   userAddress: state.myStats.address,
   commit: state.commit,
 });

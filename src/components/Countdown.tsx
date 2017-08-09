@@ -1,14 +1,18 @@
 import * as React from 'react';
 import * as moment from 'moment';
 import * as zeroFill from 'zero-fill';
-import { momentDurationObj, momentObj } from 'react-moment-proptypes';
 import './Countdown.css';
 
 const numberFormatter = zeroFill(2);
 
 const SECOND = 1000;
 
-export const CountdownComponent = ({ duration }) => (
+interface CountdownComponentProps {
+  duration: moment.Duration;
+}
+
+// @todo remove moment prop checkers
+export const CountdownComponent = ({ duration }: CountdownComponentProps) => (
   <div>
     <span className="countdown-label">d</span>
     <span className="countdown-value">{numberFormatter(duration.days())}</span>
@@ -21,33 +25,44 @@ export const CountdownComponent = ({ duration }) => (
   </div>
 );
 
-CountdownComponent.propTypes = {
-  duration: momentDurationObj.isRequired,
-};
+interface CountdownProps {
+  finishDate: moment.Moment,
+}
 
-export class Countdown extends React.Component {
-  constructor(...args) {
-    super(...args);
+interface CountdownState {
+  duration: moment.Duration;
+  timerID: number;
+}
+
+export class Countdown extends React.Component<CountdownProps, CountdownState> {
+  constructor(props: CountdownProps) {
+    super(props);
 
     this.state = {
       duration: this.calculateDuration(),
+      timerID: null,
     };
   }
 
   componentDidMount() {
-    this.timerID = setInterval(
+    const timerID = window.setInterval(
       () => {
-        // clearInterval(this.timerID); //@todo when to clean?
         this.setState({
+          ...this.state,
           duration: this.calculateDuration(),
         });
       },
       SECOND
     );
+
+    this.setState({
+      ...this.state,
+      timerID: timerID,
+    });
   }
 
   componentWillUnmount() {
-    clearInterval(this.timerID); // is it fine? we should use state here i guess
+    clearInterval(this.state.timerID);
   }
 
   calculateDuration() {
@@ -63,8 +78,3 @@ export class Countdown extends React.Component {
     return <CountdownComponent duration={duration} />;
   }
 }
-
-
-Countdown.propTypes = {
-  finishDate: momentObj.isRequired,
-};
