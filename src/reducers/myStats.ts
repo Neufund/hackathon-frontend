@@ -1,4 +1,4 @@
-import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from '../actions/constants';
+import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from "../actions/constants";
 
 export interface MyStatsState {
   loading: boolean;
@@ -16,7 +16,7 @@ const initialState: MyStatsState = {
   weiAmmount: null,
 };
 
-export default function (state = initialState, action: any): MyStatsState {
+export default function(state = initialState, action: any): MyStatsState {
   const { type, payload } = action;
   switch (type) {
     case SET_USER_ADDRESS:

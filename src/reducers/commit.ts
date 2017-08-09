@@ -1,9 +1,14 @@
-import { COMMITING_STARTED, COMMITING_TRANSACTION_SUBMITTED, COMMITING_DONE, COMMITING_ERROR } from '../actions/constants';
+import {
+  COMMITING_STARTED,
+  COMMITING_TRANSACTION_SUBMITTED,
+  COMMITING_DONE,
+  COMMITING_ERROR,
+} from "../actions/constants";
 
 export interface CommitState {
-  commiting: boolean,
-  transactionSubmitted: boolean,
-  error: any,
+  commiting: boolean;
+  transactionSubmitted: boolean;
+  error: any;
 }
 
 const initialState: CommitState = {
@@ -12,7 +17,7 @@ const initialState: CommitState = {
   error: null,
 };
 
-export default function (state = initialState, action: any): CommitState {
+export default function(state = initialState, action: any): CommitState {
   const { type, payload } = action;
 
   switch (type) {

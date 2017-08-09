@@ -1,30 +1,28 @@
-import { ThunkAction } from 'redux-thunk';
-import { routeTo } from 'redux-router-kit';
-import web3 from './web3Provider';
-import { Crowdsale } from './contracts/index';
+import { ThunkAction } from "redux-thunk";
+import { routeTo } from "redux-router-kit";
+import web3 from "./web3Provider";
+import { Crowdsale } from "./contracts/index";
 import {
   commitingStartedAction,
   commitingTransactionSubmittedAction,
   commitingDoneAction,
   commitingError,
-} from '../actions/commitActions';
+} from "../actions/commitActions";
 
-export default function (contractAddress: string, amount: number, userAddress:string): ThunkAction<any, any, any> {  // @todo improve it
-  return async (dispatch) => {
+export default function(contractAddress: string, amount: number, userAddress: string): ThunkAction<any, any, any> {
+  // @todo improve it
+  return async dispatch => {
     try {
-      const weiAmmount = web3.toWei(amount, 'ether');
+      const weiAmmount = web3.toWei(amount, "ether");
 
       dispatch(commitingStartedAction());
 
       const contract = Crowdsale(contractAddress);
 
-      await contract.commitAsync(
-        { value: weiAmmount, from: userAddress, gas: 1000000 }
-      );
+      await contract.commitAsync({ value: weiAmmount, from: userAddress, gas: 1000000 });
       dispatch(commitingTransactionSubmittedAction());
 
-
-      const confirmation = web3.eth.filter('latest', async (error: any) => {
+      const confirmation = web3.eth.filter("latest", async (error: any) => {
         if (error) {
           return;
         }
@@ -32,7 +30,7 @@ export default function (contractAddress: string, amount: number, userAddress:st
         confirmation.stopWatching();
 
         dispatch(commitingDoneAction());
-        dispatch(routeTo('/'));
+        dispatch(routeTo("/"));
       });
     } catch (e) {
       dispatch(commitingError(e));

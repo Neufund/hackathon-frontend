@@ -1,6 +1,6 @@
-import * as React from 'react';
+import * as React from "react";
 
-const TopHeader = () => (
+const TopHeader = () =>
   <div className="top-header">
     <div className="app-header">
       <a className="app-logo" href="/">
@@ -11,7 +11,6 @@ const TopHeader = () => (
         <span className="powerd-by-neufund ">Powered by Neufund</span>
       </div>
     </div>
-  </div>
-);
+  </div>;
 
 export default TopHeader;

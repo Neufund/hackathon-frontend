@@ -1,5 +1,5 @@
-import * as React from 'react';
-import './ProgressBar.css';
+import * as React from "react";
+import "./ProgressBar.css";
 
 interface ProgressBarProps {
   raised: number;
@@ -8,8 +8,8 @@ interface ProgressBarProps {
 }
 
 const ProgressBar = ({ raised, maxCap, minCap }: ProgressBarProps) => {
-  const raisedPercentage = (raised / maxCap) * 100;
-  const minCapPercentage = (minCap / maxCap) * 100;
+  const raisedPercentage = raised / maxCap * 100;
+  const minCapPercentage = minCap / maxCap * 100;
 
   const raisedWidth = {
     width: `${raisedPercentage}%`,
@@ -23,7 +23,9 @@ const ProgressBar = ({ raised, maxCap, minCap }: ProgressBarProps) => {
     <div className="progress-bar-container">
       <div className="progress-bar-background">
         <div className="progress-bar-line min-cap-progress-line" style={minCapWidth}>
-          <p className="max-cap">{ maxCap } ETH</p>
+          <p className="max-cap">
+            {maxCap} ETH
+          </p>
         </div>
         <div className="progress-bar-line" style={raisedWidth} />
       </div>

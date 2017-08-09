@@ -1,10 +1,9 @@
-import * as React from 'react';
-import './Jumbotron.css';
+import * as React from "react";
+import "./Jumbotron.css";
 
-const Jumbotron: React.SFC<{}> = ({ children }) => (
+const Jumbotron: React.SFC<{}> = ({ children }) =>
   <div className="neufund-jumbotron">
-    { children }
-  </div>
-);
+    {children}
+  </div>;
 
 export default Jumbotron;

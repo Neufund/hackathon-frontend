@@ -1,5 +1,5 @@
-import { LockedAccount, Neumark } from './contracts';
-import { asNumber, asEtherNumber } from './utils';
+import { LockedAccount, Neumark } from "./contracts";
+import { asNumber, asEtherNumber } from "./utils";
 
 export default async function loadIcoStats(lockedAccountAddress: string, neumarkAddress: string) {
   const lockedAccount = LockedAccount(lockedAccountAddress);

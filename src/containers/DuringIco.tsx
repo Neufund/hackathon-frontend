@@ -1,16 +1,16 @@
-import * as React from 'react';
-import { Dispatch } from 'redux';
-import { CircularProgress } from 'material-ui';
-import { Moment } from 'moment'
-import { connect } from 'react-redux';
-import { routeTo } from 'redux-router-kit';
-import { loadIcoStats } from '../actions/loadIcoStats';
-import { Countdown } from '../components/Countdown';
-import ProgressBar from '../components/ProgressBar';
-import './DuringIco.css';
-import config from '../config';
-import { selectEndDate } from '../reducers/icoParameters';
-import TokenChart from '../components/TokenChart';
+import * as React from "react";
+import { Dispatch } from "redux";
+import { CircularProgress } from "material-ui";
+import { Moment } from "moment";
+import { connect } from "react-redux";
+import { routeTo } from "redux-router-kit";
+import { loadIcoStats } from "../actions/loadIcoStats";
+import { Countdown } from "../components/Countdown";
+import ProgressBar from "../components/ProgressBar";
+import "./DuringIco.css";
+import config from "../config";
+import { selectEndDate } from "../reducers/icoParameters";
+import TokenChart from "../components/TokenChart";
 
 interface IcoState {
   raised: number;
@@ -21,12 +21,12 @@ interface IcoState {
 }
 
 interface DuringIcoProps {
-  loadIcoStats: any//func.isRequired,
-  finishDate: Moment,
-  minCap: number,
-  maxCap: number,
-  icoState: IcoState
-  onCommitClick: () => void,
+  loadIcoStats: any; //func.isRequired,
+  finishDate: Moment;
+  minCap: number;
+  maxCap: number;
+  icoState: IcoState;
+  onCommitClick: () => void;
 }
 
 interface DuringIcoState {
@@ -49,8 +49,8 @@ class DuringIco extends React.Component<DuringIcoProps, DuringIcoState> {
 
     /*eslint-disable */
     this.setState({
-        interval,
-      });
+      interval,
+    });
     /*eslint-enable */
   }
 
@@ -73,7 +73,9 @@ class DuringIco extends React.Component<DuringIcoProps, DuringIcoState> {
       <div className="ico-header during-ico">
         <h3 className="title">Commit funds to invest in the future</h3>
         <h6 className="normal-text">Total commited</h6>
-        <h3>{ icoState.raised.toFixed(3) } ETH</h3>
+        <h3>
+          {icoState.raised.toFixed(3)} ETH
+        </h3>
         <ProgressBar raised={icoState.raised} minCap={minCap} maxCap={maxCap} />
         <h6 className="normal-text">Finishes in:</h6>
         <Countdown finishDate={finishDate} />
@@ -82,16 +84,22 @@ class DuringIco extends React.Component<DuringIcoProps, DuringIcoState> {
           <div className="clearfix">
             <div className="neumark">
               <h6 className="normal-text">How much Neumarks has been issued</h6>
-              <h3>{ icoState.neuMarkAmount } <span className="light-text">NEU</span></h3>
+              <h3>
+                {icoState.neuMarkAmount} <span className="light-text">NEU</span>
+              </h3>
             </div>
             <div className="investors">
               <h6 className="normal-text">How many investors</h6>
-              <h3>{ icoState.investorNumber }</h3>
+              <h3>
+                {icoState.investorNumber}
+              </h3>
             </div>
           </div>
         </div>
         <div className="actions">
-          <button className="active" onClick={onCommitClick}>Commit</button>
+          <button className="active" onClick={onCommitClick}>
+            Commit
+          </button>
           <button>etherscan.io</button>
         </div>
         <TokenChart id={1} />
@@ -100,7 +108,8 @@ class DuringIco extends React.Component<DuringIcoProps, DuringIcoState> {
   }
 }
 
-function mapStateToProps(state: any) { // @todo fix state
+function mapStateToProps(state: any) {
+  // @todo fix state
   return {
     icoState: state.icoState,
     minCap: state.icoParameters.minCap,
@@ -109,10 +118,11 @@ function mapStateToProps(state: any) { // @todo fix state
   };
 }
 
-function mapDispatchToProps(dispatch: Dispatch<any>) { //@todo fix state
+function mapDispatchToProps(dispatch: Dispatch<any>) {
+  //@todo fix state
   return {
     loadIcoStats: () => dispatch(loadIcoStats),
-    onCommitClick: () => dispatch(routeTo('/commit')),
+    onCommitClick: () => dispatch(routeTo("/commit")),
   };
 }
 

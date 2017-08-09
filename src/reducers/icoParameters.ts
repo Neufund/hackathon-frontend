@@ -1,8 +1,8 @@
-import * as moment from 'moment';
+import * as moment from "moment";
 
-import config from '../config';
-import { LOAD_ICO_PARAMS, IcoPhase, NEW_PHASE_ACTION } from '../actions/constants';
-import { checkPhase } from '../actions/checkPhase';
+import config from "../config";
+import { LOAD_ICO_PARAMS, IcoPhase, NEW_PHASE_ACTION } from "../actions/constants";
+import { checkPhase } from "../actions/checkPhase";
 
 export interface IcoParametersState {
   loading: boolean;
@@ -28,7 +28,7 @@ const initialState: IcoParametersState = {
   icoPhase: IcoPhase.UNKNOWN,
 };
 
-export default function (state = initialState, action: any): IcoParametersState {
+export default function(state = initialState, action: any): IcoParametersState {
   const { type, payload } = action;
   switch (type) {
     case LOAD_ICO_PARAMS:
@@ -53,7 +53,6 @@ export default function (state = initialState, action: any): IcoParametersState 
   }
 }
 
-
 export function selectAddress(state: IcoParametersState) {
   return state.address;
 }
@@ -66,7 +65,7 @@ export function selectNeumarkTokenAddress(state: IcoParametersState) {
   return state.neumarkTokenAddress;
 }
 
-export function selectStartDate(state: IcoParametersState ) {
+export function selectStartDate(state: IcoParametersState) {
   return moment(state.startDate);
 }
 

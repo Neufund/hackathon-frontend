@@ -1,12 +1,10 @@
-import * as React from 'react';
-import TopHeader from './TopHeader';
+import * as React from "react";
+import TopHeader from "./TopHeader";
 
-const App: React.SFC = ({ children }) => (
+const App: React.SFC = ({ children }) =>
   <div>
     <TopHeader />
-    { children }
-  </div>
-);
+    {children}
+  </div>;
 
 export default App;
-

@@ -1,4 +1,4 @@
-import { LockedAccount } from './contracts';
+import { LockedAccount } from "./contracts";
 
 export default async (investorAddress: string, lockedAccountAddress: string) => {
   const lockedAccount = LockedAccount(lockedAccountAddress);

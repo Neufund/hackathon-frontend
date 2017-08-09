@@ -1,7 +1,7 @@
-import * as Bluebird from 'bluebird';
-import * as moment from 'moment';
-import { selectStartDate, selectEndDate, IcoParametersState } from '../reducers/icoParameters';
-import { IcoPhase, NEW_PHASE_ACTION } from './constants';
+import * as Bluebird from "bluebird";
+import * as moment from "moment";
+import { selectStartDate, selectEndDate, IcoParametersState } from "../reducers/icoParameters";
+import { IcoPhase, NEW_PHASE_ACTION } from "./constants";
 import { ThunkAction } from "redux-thunk";
 import { AppState } from "../reducers/index";
 
@@ -30,13 +30,13 @@ export function checkPhase(icoParams: IcoParametersState) {
   return IcoPhase.AFTER_ICO;
 }
 
-
 // long running action that makes sure that phase of the ICO is up to date
 // this is a great use case for sagas
-const checkPhaseSaga: ThunkAction<{}, AppState, {}> = async function (dispatch, getState) {
+const checkPhaseSaga: ThunkAction<{}, AppState, {}> = async function(dispatch, getState) {
   let lastPhase;
 
-  while (true) { // eslint-disable-line
+  while (true) {
+    // eslint-disable-line
     await Bluebird.delay(1000); // eslint-disable-line
 
     // @todo: change this ASAP
@@ -48,6 +48,6 @@ const checkPhaseSaga: ThunkAction<{}, AppState, {}> = async function (dispatch, 
       lastPhase = newPhase;
     }
   }
-}
+};
 
 export default checkPhaseSaga;
