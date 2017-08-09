@@ -1,11 +1,7 @@
-import * as invariant from 'invariant';
 import { LockedAccount, Neumark } from './contracts';
 import { asNumber, asEtherNumber } from './utils';
 
-export default async function loadIcoStats(lockedAccountAddress, neumarkAddress) {
-  invariant(lockedAccountAddress, 'Specify adddress!');
-  invariant(neumarkAddress, 'Specify adddress!');
-
+export default async function loadIcoStats(lockedAccountAddress: string, neumarkAddress: string) {
   const lockedAccount = LockedAccount(lockedAccountAddress);
   const neumark = Neumark(neumarkAddress);
 

@@ -1,10 +1,7 @@
-import * as invariant from 'invariant';
 import { Crowdsale } from './contracts';
 import { asEtherNumber, asMomentDate } from './utils';
 
-export default async function loadIcoParamsFromContract(address) {
-  invariant(address, 'Specify adddress!');
-
+export default async function loadIcoParamsFromContract(address: string) {
   const icoContract = Crowdsale(address);
 
   const [

@@ -6,8 +6,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 
 module.exports = {
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"]
+    extensions: [".ts", ".js"]
   },
   devServer: {
     host: 'localhost',

@@ -5,7 +5,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
 import AddressForm from './AddressForm';
 import './MyStats.scss';
-import getAccount from '../web3/getAccount';
+import getAccount from '../web3/getAccount.ts';
 import { setUserAddress } from '../actions/myStatsActions';
 
 class MyStatsComponent extends React.Component {
