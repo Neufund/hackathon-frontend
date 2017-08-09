@@ -1,4 +1,4 @@
-import moment from 'moment';
+import * as moment from 'moment';
 import web3 from './web3Provider';
 
 export function asMomentDate(bignum) {

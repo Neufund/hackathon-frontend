@@ -1,4 +1,4 @@
-import invariant from 'invariant';
+import * as invariant from 'invariant';
 import { Crowdsale } from './contracts';
 import { asEtherNumber, asMomentDate } from './utils';
 

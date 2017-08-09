@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { momentObj } from 'react-moment-proptypes';
 import { connect } from 'react-redux';
 

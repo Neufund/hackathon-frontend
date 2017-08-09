@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { CircularProgress } from 'material-ui';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { momentObj } from 'react-moment-proptypes';
 import { routeTo } from 'redux-router-kit';

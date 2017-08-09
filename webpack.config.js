@@ -1,10 +1,14 @@
-import path from 'path';
-import webpack from 'webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+const path = require('path');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-export default {
+module.exports = {
+  resolve: {
+    // Add '.ts' and '.tsx' as resolvable extensions.
+    extensions: [".ts", ".tsx", ".js", ".json"]
+  },
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -57,11 +61,12 @@ export default {
         ],
       },
       { test: /\.json$/, use: 'json-loader' },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+      { 
+        test: /\.(j|t)sx?$/, 
+        loader: "awesome-typescript-loader",
+        exclude: /(node_modules|bower_components)/
       },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.(jpg|png)$/,
         loader: 'url-loader',

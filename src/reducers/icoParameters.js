@@ -1,5 +1,5 @@
-import moment from 'moment';
-import invariant from 'invariant';
+import * as moment from 'moment';
+import * as invariant from 'invariant';
 
 import config from '../config';
 import { LOAD_ICO_PARAMS, ICO_PHASES, NEW_PHASE_ACTION } from '../actions/constants';

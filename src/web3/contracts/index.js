@@ -1,8 +1,8 @@
 import { promisifyAll } from 'bluebird';
 import web3 from '../web3Provider';
-import CrowdsaleDefinition from './Crowdsale.json';
-import LockedAccountDefinition from './LockedAccount.json';
-import NeumarkDefinition from './Neumark.json';
+import * as CrowdsaleDefinition from './Crowdsale.json';
+import * as LockedAccountDefinition from './LockedAccount.json';
+import * as NeumarkDefinition from './Neumark.json';
 
 export const Crowdsale = address =>
   promisifyAll(web3.eth.contract(CrowdsaleDefinition.abi).at(address));

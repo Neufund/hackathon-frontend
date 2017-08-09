@@ -1,6 +1,6 @@
 /* global web3*/
-import Web3 from 'web3';
-import Bluebird from 'bluebird';
+import * as Web3 from 'web3';
+import * as Bluebird from 'bluebird';
 
 
 import config from '../config';

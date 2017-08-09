@@ -1,4 +1,4 @@
-import invariant from 'invariant';
+import * as invariant from 'invariant';
 import { LockedAccount, Neumark } from './contracts';
 import { asNumber, asEtherNumber } from './utils';
 

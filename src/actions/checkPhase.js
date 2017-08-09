@@ -1,5 +1,5 @@
-import Bluebird from 'bluebird';
-import moment from 'moment';
+import * as Bluebird from 'bluebird';
+import * as moment from 'moment';
 import { selectStartDate, selectEndDate } from '../reducers/icoParameters';
 import { ICO_PHASES, NEW_PHASE_ACTION } from './constants';
 

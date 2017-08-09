@@ -1,4 +1,4 @@
-import invariant from 'invariant';
+import * as invariant from 'invariant';
 import { routeTo } from 'redux-router-kit';
 import web3 from './web3Provider';
 import { Crowdsale } from './contracts/index';

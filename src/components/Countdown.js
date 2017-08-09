@@ -1,6 +1,6 @@
-import React from 'react';
-import moment from 'moment';
-import zeroFill from 'zero-fill';
+import * as React from 'react';
+import * as moment from 'moment';
+import * as zeroFill from 'zero-fill';
 import { momentDurationObj, momentObj } from 'react-moment-proptypes';
 import './Countdown.css';
 

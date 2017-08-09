@@ -1,10 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
 import Chart from '../tokenChart';
 import './TokenChart.scss';
 
 class TokenChart extends React.Component {
-
   componentDidMount() {
     const config = {
       name: `tokenChartCanvas${this.props.id}`,
@@ -29,7 +28,9 @@ class TokenChart extends React.Component {
     );
   }
 }
+
 TokenChart.propTypes = {
   id: PropTypes.number.isRequired,
 };
+
 export default TokenChart;
