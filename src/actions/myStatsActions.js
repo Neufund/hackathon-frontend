@@ -1,6 +1,6 @@
 import { SET_USER_ADDRESS, SET_USER_LOADING, SET_USER_COMITTMENT } from './constants';
 import { selectLockedAccountAddress } from '../reducers/icoParameters';
-import loadUserCommitmentFromWeb3 from '../web3/loadUserCommitment';
+import loadUserCommitmentFromWeb3 from '../web3/loadUserCommitment.ts';
 
 export function setUserAddressAction(address, addressFromWeb3) {
   return {

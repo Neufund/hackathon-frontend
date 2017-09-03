@@ -1,10 +1,13 @@
-import path from 'path';
-import webpack from 'webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+const path = require('path');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-export default {
+module.exports = {
+  resolve: {
+    extensions: [".ts", ".tsx", ".js"]
+  },
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -23,7 +26,7 @@ export default {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://localhost:8080',
     'webpack/hot/only-dev-server',
-    './src/index.js',
+    './src/index.tsx',
   ],
   output: {
     path: path.resolve(__dirname, 'build'),
@@ -57,11 +60,12 @@ export default {
         ],
       },
       { test: /\.json$/, use: 'json-loader' },
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
+      { 
+        test: /\.(j|t)sx?$/, 
+        loader: "awesome-typescript-loader",
+        exclude: /(node_modules|bower_components)/
       },
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
       {
         test: /\.(jpg|png)$/,
         loader: 'url-loader',

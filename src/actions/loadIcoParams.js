@@ -1,6 +1,6 @@
 import { selectAddress } from '../reducers/icoParameters';
 import { LOAD_ICO_PARAMS } from './constants';
-import loadIcoParamsFromContract from '../web3/loadIcoParamsFromContract';
+import loadIcoParamsFromContract from '../web3/loadIcoParamsFromContract.ts';
 
 export function loadIcoParamsAction(
   startDate, endDate, lockedAccountAddress, neumarkTokenAddress, minCap, maxCap

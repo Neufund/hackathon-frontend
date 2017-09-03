@@ -1,6 +1,6 @@
 import { selectLockedAccountAddress, selectNeumarkTokenAddress } from '../reducers/icoParameters';
 import { LOAD_ICO_STATS } from './constants';
-import loadIcoStatsFromContract from '../web3/loadIcoStats';
+import loadIcoStatsFromContract from '../web3/loadIcoStats.ts';
 
 export function loadIcoStatsAction(raised, investorNumber, neuMarkAmount, neuMarkToEtherRatio) {
   return {
