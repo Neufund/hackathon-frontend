@@ -1,7 +1,7 @@
 import { ThunkAction } from "redux-thunk";
 import { routeTo } from "redux-router-kit";
 import web3 from "./web3Provider";
-import { Crowdsale } from "./contracts/index";
+import Crowdsale from "./contracts/Crowdsale";
 import {
   commitingStartedAction,
   commitingTransactionSubmittedAction,
@@ -17,9 +17,9 @@ export default function(contractAddress: string, amount: number, userAddress: st
 
       dispatch(commitingStartedAction());
 
-      const contract = Crowdsale(contractAddress);
+      const contract = await Crowdsale.createAndValidate(web3, contractAddress);
 
-      await contract.commitAsync({ value: weiAmmount, from: userAddress, gas: 1000000 });
+      await contract.commitTx({ value: weiAmmount, from: userAddress, gas: 1000000 });
       dispatch(commitingTransactionSubmittedAction());
 
       const confirmation = web3.eth.filter("latest", async (error: any) => {
