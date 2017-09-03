@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import config from "../config";
 import web3 from "../web3/web3Provider";
-import { Crowdsale } from "../web3/contracts";
+import Crowdsale from "../web3/contracts/Crowdsale";
 import "./CommitDescription.scss";
 
 interface CommitDescriptionComponentProps {
@@ -37,7 +37,7 @@ const CommitDescriptionComponent = ({ address, data, gas, gasPrice }: CommitDesc
 const MapStateToProps = (state: any) => ({
   //@todo fix state
   address: config.icoContractAddress,
-  data: (Crowdsale(config.icoContractAddress) as any).commit.getData(),
+  data: new Crowdsale(web3, config.icoContractAddress).rawWeb3Contract.commit.getData(),
   gas: "387766",
   gasPrice: web3.toWei("20", "gwei"),
 });
